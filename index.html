@@ -1,4021 +1,1997 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8" />
-
-<title>FULL EXPERIMENT SEQUENCE</title>
-
-<meta name="viewport" content="width=device-width,
-initial-scale=1.0" />
-
-<style>
-
-:root { --ink:#0f172a; --muted:#6b7280; --brand:#7c3aed;
---accent:#22c55e; --panel:#0b1020; }
-
-html,body {
-
-margin:0;
-
-padding:0;
-
-height:100%;
-
-background:#f3f4f6;
-
-color:#0f172a;
-
-font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-
-}
-
-.shell { max-width:1200px; margin:0 auto; padding:20px; }
-
-header { display:flex; align-items:center; gap:14px; margin-bottom:14px;
-flex-wrap:wrap; }
-
-.badge { font-weight:700; font-size:14px; padding:6px 10px;
-border-radius:999px; background:linear-gradient(90deg,#7c3aed,#06b6d4);
-color:white; }
-
-.title { font-size:20px; font-weight:700; letter-spacing:.3px; }
-
-.sub { color:#6b7280; font-size:14px; }
-
-.panel { background:#fff; border:1px solid #d1d5db; border-radius:16px;
-padding:16px; box-shadow:0 6px 24px #0002; }
-
-.controls { display:flex; align-items:center; gap:12px;
-margin-bottom:10px; justify-content:space-between; flex-wrap:wrap; }
-
-.progress { flex:1 1 320px; height:10px; background:#e5e7eb;
-border-radius:999px; overflow:hidden; border:1px solid #d1d5db; }
-
-.bar { height:100%; background:linear-gradient(90deg,#22c55e,#06b6d4);
-width:0%; transition:width .3s ease; }
-
-.status { min-width:220px; font-size:14px; color:#475569; }
-
-.btn {
-
-background:linear-gradient(90deg,#7c3aed,#06b6d4);
-
-color:white; border:none; padding:10px 16px; border-radius:10px;
-font-weight:700; cursor:pointer;
-
-box-shadow:0 6px 18px #0002;
-
-}
-
-.btn:disabled { opacity:.5; cursor:not-allowed; }
-
-iframe.runner {
-
-width:100%; min-height:88vh; border:none; border-radius:14px;
-background:#fff; box-shadow:0 12px 40px #0002;
-
-}
-
-.hint { font-size:13px; color:#94a3b8; }
-
+  <meta charset="UTF-8" />
+  <title>FULL EXPERIMENT SEQUENCE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+  :root { --ink:#0f172a; --muted:#6b7280; --brand:#7c3aed; --accent:#22c55e; --panel:#0b1020; }
+  html,body { 
+    margin:0; 
+    padding:0; 
+    height:100%; 
+    background:#f3f4f6; 
+    color:#0f172a;       
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; 
+  }
+  .shell { max-width:1200px; margin:0 auto; padding:20px; }
+  header { display:flex; align-items:center; gap:14px; margin-bottom:14px; flex-wrap:wrap; }
+  .badge { font-weight:700; font-size:14px; padding:6px 10px; border-radius:999px; background:linear-gradient(90deg,#7c3aed,#06b6d4); color:white; }
+  .title { font-size:20px; font-weight:700; letter-spacing:.3px; }
+  .sub { color:#6b7280; font-size:14px; } 
+  .panel { background:#fff; border:1px solid #d1d5db; border-radius:16px; padding:16px; box-shadow:0 6px 24px #0002; }
+  .controls { display:flex; align-items:center; gap:12px; margin-bottom:10px; justify-content:space-between; flex-wrap:wrap; }
+  .progress { flex:1 1 320px; height:10px; background:#e5e7eb; border-radius:999px; overflow:hidden; border:1px solid #d1d5db; }
+  .bar { height:100%; background:linear-gradient(90deg,#22c55e,#06b6d4); width:0%; transition:width .3s ease; }
+  .status { min-width:220px; font-size:14px; color:#475569; }
+  .btn {
+    background:linear-gradient(90deg,#7c3aed,#06b6d4);
+    color:white; border:none; padding:10px 16px; border-radius:10px; font-weight:700; cursor:pointer;
+    box-shadow:0 6px 18px #0002;
+  }
+  .btn:disabled { opacity:.5; cursor:not-allowed; }
+  iframe.runner {
+    width:100%; min-height:88vh; border:none; border-radius:14px; background:#fff; box-shadow:0 12px 40px #0002;
+  }
+  .hint { font-size:13px; color:#94a3b8; }
 </style>
-
 
 <script src="sync-markers.js"></script>
 </head>
-
 <body>
-
-<div class="shell">
-
-<header>
-
-<span class="badge">MEMORY RECONSOLIDATION EXPERIMENT </span>
-
-<div class="title">FULL PROTOCOL</div>
-
-</header>
-
-<div class="panel">
-
-<div class="controls">
-
-<div class="progress"><div id="bar"
-class="bar"></div></div>
-
-<div id="status" class="status">Ready. Click "Start Flow" to begin
-with the <b>Baseline Recording</b>.</div>
-
-<button id="downloadBtn" class="btn" style="background:
-#6b7280;">Download Data</button>
-
-<button id="skipBtn" class="btn" style="background: #f97316;"
-disabled>Skip Current Task</button>
-
-<button id="startBtn" class="btn">Start Flow</button>
-
-</div>
-
-</div>
-
-<div style="height:12px;"></div>
-
-<iframe id="stage" class="runner" title="Task
-Runner"></iframe>
-
-</div>
-
-<template id="task0-html">
-
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>Baseline Recording</title>
-
-<style>
-
-body {
-
-font-family: Arial, sans-serif;
-
-background: #2a3a5c;
-
-color: #fff;
-
-display: flex;
-
-flex-direction: column;
-
-align-items: center;
-
-justify-content: center;
-
-min-height: 100vh;
-
-margin: 0;
-
-}
-
-.container {
-
-background: #19335c;
-
-padding: 2em 3em;
-
-border-radius: 16px;
-
-box-shadow: 0 4px 32px rgba(0,0,0,0.2);
-
-text-align: center;
-
-}
-
-.timer {
-
-font-size: 2em;
-
-margin: 1em 0;
-
-letter-spacing: 0.1em;
-
-color: #ffd700;
-
-}
-
-button {
-
-padding: 0.7em 2.2em;
-
-font-size: 1.2em;
-
-background: #ffd700;
-
-color: #19335c;
-
-border: none;
-
-border-radius: 8px;
-
-cursor: pointer;
-
-margin-top: 1em;
-
-font-weight: bold;
-
-transition: background 0.2s;
-
-}
-
-button:disabled {
-
-background: #aaa;
-
-color: #666;
-
-cursor: default;
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-<h2>Baseline Recording</h2>
-
-<div id="instructions">
-
-<p>
-
-<b>Instructions:</b><br>
-
-Please sit still and relax for the next 2 minutes.<br>
-
-Try to clear your mind and breathe normally.<br>
-
-Press <b>Start</b> to begin the recording.
-
-</p>
-
-</div>
-
-<div class="timer" id="timer">02:00</div>
-
-<button id="startBtn" onclick="startTask()">Start</button>
-
-<div id="doneMsg" style="display:none; margin-top:1em;">
-
-<b>Baseline recording complete! The next task will begin
-shortly.</b>
-
-</div>
-
-</div>
-
-<script>
-
-let timerDisplay = document.getElementById('timer');
-
-let startBtn = document.getElementById('startBtn');
-
-let doneMsg = document.getElementById('doneMsg');
-
-let interval;
-
-let duration = 2 * 60; // 2 minutes in seconds
-
-let timeLeft = duration;
-
-let startTimestamp = null;
-
-let endTimestamp = null;
-
-function updateTimer() {
-
-let min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-
-let sec = String(timeLeft % 60).padStart(2, '0');
-
-timerDisplay.textContent = `${min}:${sec}`;
-
-}
-
-function startTask() {
-
-startBtn.disabled = true;
-
-doneMsg.style.display = 'none';
-
-timeLeft = duration;
-
-updateTimer();
-
-startTimestamp = Date.now();
-
-console.log("Baseline Task Start UNIX Timestamp:", startTimestamp);
+  <div class="shell">
+    <header>
+      <span class="badge">MEMORY RECONSOLIDATION EXPERIMENT </span>
+      <div class="title">FULL PROTOCOL</div>
+    </header>
+
+    <div class="panel">
+      <div class="controls">
+        <div class="progress"><div id="bar" class="bar"></div></div>
+        <div id="status" class="status">Ready. Click “Start Flow” to begin with the <b>Baseline Recording</b>.</div>
+        <button id="downloadBtn" class="btn" style="background: #6b7280;">Download Data</button>
+        <button id="skipBtn" class="btn" style="background: #f97316;" disabled>Skip Current Task</button>
+        <button id="startBtn" class="btn">Start Flow</button>
+      </div>
+    </div>
+
+    <div style="height:12px;"></div>
+    <iframe id="stage" class="runner" title="Task Runner"></iframe>
+  </div>
+
+  <template id="task0-html">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Baseline Recording</title>
+    <style>
+      body { 
+        font-family: Arial, sans-serif; 
+        background: #2a3a5c; 
+        color: #fff; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center; 
+        min-height: 100vh; 
+        margin: 0; 
+      }
+      .container {
+        background: #19335c;
+        padding: 2em 3em;
+        border-radius: 16px;
+        box-shadow: 0 4px 32px rgba(0,0,0,0.2);
+        text-align: center;
+      }
+      .timer {
+        font-size: 2em;
+        margin: 1em 0;
+        letter-spacing: 0.1em;
+        color: #ffd700;
+      }
+      button {
+        padding: 0.7em 2.2em;
+        font-size: 1.2em;
+        background: #ffd700;
+        color: #19335c;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 1em;
+        font-weight: bold;
+        transition: background 0.2s;
+      }
+      button:disabled {
+        background: #aaa;
+        color: #666;
+        cursor: default;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Baseline Recording</h2>
+      <div id="instructions">
+        <p>
+          <b>Instructions:</b><br>
+          Please sit still and relax for the next 2 minutes.<br>
+          Try to clear your mind and breathe normally.<br>
+          Press <b>Start</b> to begin the recording.
+        </p>
+      </div>
+      <div class="timer" id="timer">02:00</div>
+      <button id="startBtn" onclick="startTask()">Start</button>
+      <div id="doneMsg" style="display:none; margin-top:1em;">
+        <b>Baseline recording complete! The next task will begin shortly.</b>
+      </div>
+    </div>
+    <script>
+      let timerDisplay = document.getElementById('timer');
+      let startBtn = document.getElementById('startBtn');
+      let doneMsg = document.getElementById('doneMsg');
+      let interval;
+      let duration = 2 * 60; // 2 minutes in seconds
+      let timeLeft = duration;
+      let startTimestamp = null;
+      let endTimestamp = null;
+
+      function updateTimer() {
+        let min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+        let sec = String(timeLeft % 60).padStart(2, '0');
+        timerDisplay.textContent = `${min}:${sec}`;
+      }
+
+      function startTask() {
+        startBtn.disabled = true;
+        doneMsg.style.display = 'none';
+        timeLeft = duration;
+        updateTimer();
+        startTimestamp = Date.now();
+        console.log("Baseline Task Start UNIX Timestamp:", startTimestamp);
     SyncMarkers.send("baseline_start");
-
-interval = setInterval(() => {
-
-timeLeft--;
-
-updateTimer();
-
-if (timeLeft <= 0) {
-
-clearInterval(interval);
-
-endTimestamp = Date.now();
-
-console.log("Baseline Task End UNIX Timestamp:", endTimestamp);
+        interval = setInterval(() => {
+          timeLeft--;
+          updateTimer();
+          if (timeLeft <= 0) {
+            clearInterval(interval);
+            endTimestamp = Date.now();
+            console.log("Baseline Task End UNIX Timestamp:", endTimestamp);
     SyncMarkers.send("baseline_end");
-
-doneMsg.style.display = 'block';
-
-startBtn.disabled = true;
-
-// Send data back to parent orchestrator
-
-const taskData = { startTimestamp, endTimestamp };
-
-setTimeout(() => {
-
-try { parent.postMessage({type:'taskComplete', task:0, data: taskData
-}, '*'); } catch(e) {}
-
-}, 2000);
-
-}
-
-}, 1000);
-
-}
-
-</script>
-
-</body>
-
-</html>
-
-</template>
-
-<template id="task1-html">
-
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>Slot Machine Game</title>
-
-<meta name="viewport" content="width=device-width,
-initial-scale=1.0">
-
-<style>
-
-body { font-family: 'Segoe UI', Arial, sans-serif; background:
-#2d1a09; color: #eee; margin: 0; }
-
-.container { max-width: 700px; margin: 0 auto; padding: 24px; }
-
-.center { text-align: center; }
-
-.slot-machine-layout { display: flex; flex-direction: row; gap: 32px;
-align-items: flex-start; }
-
-.slot-machine { background: #3b1e00; border-radius: 24px; padding: 32px
-24px 24px 24px; box-shadow: 0 8px 32px #000a; margin-bottom: 24px; flex:
-3; position: relative;}
-
-.reels { display: flex; justify-content: center; gap: 24px;
-margin-bottom: 20px; }
-
-.reel {
-
-width: 100px; height: 100px; background: #fffbe6;
-
-border: 6px solid #bfa145; border-radius: 16px; display: flex;
-align-items: center; justify-content: center;
-
-font-size: 3rem; box-shadow: 0 2px 12px #000a, 0 0 24px #fff70066 inset;
-
-transition: box-shadow 0.2s;
-
-}
-
-.chips { display: flex; justify-content: center; gap: 18px;
-margin-bottom: 18px; }
-
-.chip {
-
-width: 56px; height: 56px; border-radius: 50%; background: #ffe066;
-
-border: 4px solid #fff; display: flex; align-items: center;
-justify-content: center; font-weight: bold; font-size: 1.3rem; cursor:
-pointer; transition: border 0.2s, box-shadow 0.2s;
-
-box-shadow: 0 2px 10px #000a;
-
-margin: 0 2px;
-
-color: #3b1e00; /* <<< CHANGE 1a: Dark color for chip text */
-
-}
-
-.chip.selected { border: 4px solid #ff3; box-shadow: 0 0 16px #fff700; }
-
-.shape-chip svg { width: 40px; height: 40px; }
-
-.spin-btn {
-
-background: linear-gradient(90deg, #ff2d2d 60%, #ffb300 100%);
-
-color: #fff; padding: 16px 40px; border: none; border-radius: 12px;
-font-size: 1.5rem; cursor: pointer; margin-bottom: 14px;
-
-box-shadow: 0 2px 8px #000a, 0 0 16px #fff70055;
-
-font-weight: bold;
-
-letter-spacing: 1px;
-
-transition: filter 0.2s;
-
-}
-
-.spin-btn:disabled { background: #888; filter: grayscale(0.5); }
-
-.message { font-size: 1.25rem; margin: 14px 0; min-height: 40px;}
-
-.leaderboard { background: #1a1203; border-radius: 16px; padding: 18px
-16px; max-width: 260px; margin: 0; box-shadow: 0 2px 12px #000a; flex:
-1;}
-
-.leaderboard h3 { margin: 0 0 10px 0; color: #ffd700; text-align:
-center; letter-spacing: 1px; }
-
-.leaderboard-list { list-style: none; padding: 0; margin: 0; }
-
-.leaderboard-list li { padding: 6px 0; font-size: 1.1rem; }
-
-.player { color: #fff700; font-weight: bold; background: #3b2e00;
-border-radius: 6px; padding: 2px 8px;}
-
-.sparkle-text {
-
-animation: sparkle-text 0.7s alternate infinite;
-
-text-shadow: 0 0 12px #fff700, 0 0 24px #fff70099;
-
-}
-
-@keyframes sparkle-text {
-
-0% { text-shadow: 0 0 12px #fff700, 0 0 24px #fff70099; }
-
-100% { text-shadow: 0 0 32px #fff700, 0 0 48px #fff700cc; }
-
-}
-
-@media (max-width: 900px) {
-
-.slot-machine-layout { flex-direction: column; }
-
-.leaderboard { max-width: 100%; margin-top: 24px;}
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-<div class="instructions" id="instructions">
-
-<h2>Slot Machine Game Instructions</h2>
-
-<ul>
-
-<li>You will play <b>10 rounds</b>. In each round, place your bet
-using casino chips, and choose a shape to bet on.</li>
-
-<li><b>Higher the bet, higher the risk and potential
-reward.</b></li>
-
-<li>Try to climb the leaderboard by winning more!</li>
-
-<li>Press the <b>SPIN</b> button to play each round.</li>
-
-<li>You start with <b>$2000</b> in your wallet. If you run out,
-you can't play further.</li>
-
-<li>Good luck!</li>
-
-</ul>
-
-<div class="center"><button class="spin-btn"
-onclick="startGame()">Start Game</button></div>
-
-</div>
-
-<div class="slot-machine-layout" id="gameLayout"
-style="display:none;">
-
-<div id="game" class="slot-machine">
-
-<div class="center">
-
-<h2>Slot Machine Game</h2>
-
-<div id="trialInfo"></div>
-
-</div>
-
-<div class="reels-bg" style="position:relative;">
-
-<div class="reels" id="reels"></div>
-
-</div>
-
-<div class="chips" id="chips">
-
-<div class="chip" data-value="1">$1</div>
-
-<div class="chip" data-value="5">$5</div>
-
-<div class="chip" data-value="10">$10</div>
-
-<div class="chip" data-value="20">$20</div>
-
-</div>
-
-<div class="chips" id="shapeChips" style="margin-bottom:18px;">
-
-<div class="chip shape-chip" data-shape="sphere" title="Bet on
-Sphere"></div>
-
-<div class="chip shape-chip" data-shape="cube" title="Bet on
-Cube"></div>
-
-<div class="chip shape-chip" data-shape="pyramid" title="Bet on
-Pyramid"></div>
-
-<div class="chip shape-chip" data-shape="cylinder" title="Bet on
-Cylinder"></div>
-
-</div>
-
-<div class="center" id="gameMessage"></div>
-
-<div class="center" style="margin-top:10px;">
-
-<button class="spin-btn" id="spinBtn"
-onclick="spin()">SPIN</button>
-
-</div>
-
-</div>
-
-<div class="leaderboard" id="leaderboard">
-
-<h3>Leaderboard</h3>
-
-<ol class="leaderboard-list" id="leaderboardList"></ol>
-
-</div>
-
-</div>
-
-<div class="center" id="thankYou" style="display:none;">
-
-<h2>Task Complete!</h2>
-
-<p>The next task will begin shortly.</p>
-
-</div>
-
-</div>
-
-<script>
-
-const shapeSVGs = {
-
-'sphere': `<svg width="80" height="80" viewBox="0 0 80
-80"><defs><radialGradient id="g1" cx="50%" cy="40%"
-r="50%"><stop offset="0%" stop-color="#fff"/><stop
-offset="100%"
-stop-color="#a3f"/></radialGradient></defs><ellipse cx="40"
-cy="40" rx="32" ry="32" fill="url(#g1)" stroke="#5c2a7c"
-stroke-width="4"/></svg>`,
-
-'cube': `<svg width="80" height="80" viewBox="0 0 80
-80"><defs><linearGradient id="g2" x1="0" y1="0" x2="1"
-y2="1"><stop offset="0%" stop-color="#fff"/><stop
-offset="100%" stop-color="#3a6"/></linearGradient></defs><rect
-x="16" y="16" width="48" height="48" rx="8" fill="url(#g2)"
-stroke="#2a7c5c" stroke-width="4"/></svg>`,
-
-'pyramid': `<svg width="80" height="80" viewBox="0 0 80
-80"><defs><linearGradient id="g3" x1="0" y1="0" x2="1"
-y2="1"><stop offset="0%" stop-color="#fff"/><stop
-offset="100%"
-stop-color="#a3f"/></linearGradient></defs><polygon
-points="40,12 68,68 12,68" fill="url(#g3)" stroke="#5c2a7c"
-stroke-width="4"/></svg>`,
-
-'cylinder': `<svg width="80" height="80" viewBox="0 0 80
-80"><defs><linearGradient id="g4" x1="0" y1="0" x2="0"
-y2="1"><stop offset="0%" stop-color="#fff"/><stop
-offset="100%"
-stop-color="#3a6"/></linearGradient></defs><ellipse cx="40"
-cy="20" rx="24" ry="10" fill="#fff" opacity="0.5"/><rect
-x="16" y="20" width="48" height="40" rx="24" fill="url(#g4)"
-stroke="#2a7c5c" stroke-width="4"/><ellipse cx="40" cy="60"
-rx="24" ry="10" fill="#3a6" stroke="#2a7c5c"
-stroke-width="4"/></svg>`
-
-};
-
-const allSymbols = ['sphere', 'cube', 'pyramid', 'cylinder'];
-
-const winningCombos = [['sphere','sphere','sphere'],
-['pyramid','pyramid','pyramid']];
-
-let trialNum = 0;
-
-let betAmount = 1;
-
-let betShape = 'sphere';
-
-const TOTAL_TRIALS = 10;
-
-let leaderboard = [];
-
-let trialData = [];
-
-// --- Timestamp Variables ---
-
-let startTimestamp = null;
-
-let endTimestamp = null;
-
-function startGame() {
-
-startTimestamp = Date.now();
-
-SyncMarkers.send("memory_retrieval_start");
-    console.log("Task 1 (Retrieval) Start UNIX Timestamp:",
-startTimestamp);
-
-trialNum = 0;
-
-trialData = [];
-
-leaderboard = [
-
-{name: "You", score: 100}
-
-];
-
-for (let i = 1; i <= 10; i++) {
-
-leaderboard.push({name: "Player " + i, score: 100 - i});
-
-}
-
-document.getElementById('instructions').style.display = 'none';
-
-document.getElementById('gameLayout').style.display = 'flex';
-
-updateGameUI();
-
-renderLeaderboard();
-
-document.querySelectorAll('.chip').forEach(chip => {
-
-if (!chip.classList.contains('shape-chip')) {
-
-chip.onclick = function() {
-
-document.querySelectorAll('.chip').forEach(c => { if
-(!c.classList.contains('shape-chip'))
-c.classList.remove('selected'); });
-
-chip.classList.add('selected');
-
-betAmount = parseInt(chip.dataset.value);
-
-document.getElementById('spinBtn').disabled = false;
-
-document.getElementById('gameMessage').innerHTML = '';
-
-}
-
-}
-
-});
-
-renderShapeChips();
-
-}
-
-function renderShapeChips() {
-
-const chips = document.querySelectorAll('.shape-chip');
-
-chips.forEach(chip => {
-
-const shape = chip.dataset.shape;
-
-chip.innerHTML = shapeSVGs[shape];
-
-chip.onclick = function() {
-
-chips.forEach(c => c.classList.remove('selected'));
-
-chip.classList.add('selected');
-
-betShape = shape;
-
-}
-
-});
-
-chips[0].classList.add('selected');
-
-betShape = chips[0].dataset.shape;
-
-}
-
-function updateGameUI() {
-
-document.getElementById('trialInfo').innerHTML = `<b>Trial
-${trialNum+1} of ${TOTAL_TRIALS}</b>`;
-
-renderReels(['❓','❓','❓']);
-
-document.getElementById('gameMessage').innerHTML = '';
-
-document.getElementById('spinBtn').disabled = false;
-
-document.querySelectorAll('.chip').forEach(chip => { if
-(!chip.classList.contains('shape-chip'))
-chip.classList.remove('selected'); });
-
-betAmount = 1;
-
-document.querySelector('.chip[data-value="1"]').classList.add('selected');
-
-}
-
-function renderReels(symbols) {
-
-const reelsDiv = document.getElementById('reels');
-
-reelsDiv.innerHTML = '';
-
-symbols.forEach(sym => {
-
-const div = document.createElement('div');
-
-div.className = 'reel';
-
-div.innerHTML = shapeSVGs[sym] || '';
-
-reelsDiv.appendChild(div);
-
-});
-
-}
-
-function renderLeaderboard() {
-
-const list = document.getElementById('leaderboardList');
-
-list.innerHTML = '';
-
-leaderboard.forEach((l,i) => {
-
-const li = document.createElement('li');
-
-li.innerText = l.name + " - $" + l.score;
-
-if (i === 0) li.className = 'player';
-
-list.appendChild(li);
-
-});
-
-}
-
-function spin() {
-
-document.getElementById('spinBtn').disabled = true;
-
-let spinStartTime = Date.now();
-
-let anim = setInterval(() => {
-
-renderReels([
-
-allSymbols[Math.floor(Math.random()*allSymbols.length)],
-
-allSymbols[Math.floor(Math.random()*allSymbols.length)],
-
-allSymbols[Math.floor(Math.random()*allSymbols.length)]
-
-]);
-
-}, 70);
-
-setTimeout(() => {
-
-clearInterval(anim);
-
-let combo =
-winningCombos[Math.floor(Math.random()*winningCombos.length)];
-
-renderReels(combo);
-
-trialData.push({
-
-trial: trialNum + 1,
-
-betAmount,
-
-betShape,
-
-combo: combo.join(','),
-
-spinStartTime,
-
-spinEndTime: Date.now()
-
-});
-
-trialNum++;
-
-if (trialNum < TOTAL_TRIALS) {
-
-setTimeout(() => {
-
-updateGameUI();
-
-renderLeaderboard();
-
-}, 1400);
-
-} else {
-
-setTimeout(() => {
-
-endTimestamp = Date.now();
-
-SyncMarkers.send("memory_retrieval_end");
+            doneMsg.style.display = 'block';
+            startBtn.disabled = true;
+            
+            // Send data back to parent orchestrator
+            const taskData = { startTimestamp, endTimestamp };
+            setTimeout(() => {
+                try { parent.postMessage({type:'taskComplete', task:0, data: taskData }, '*'); } catch(e) {}
+            }, 2000);
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+  </html>
+  </template>
+
+  <template id="task1-html">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Slot Machine Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body { font-family: 'Segoe UI', Arial, sans-serif; background: #2d1a09; color: #eee; margin: 0; }
+      .container { max-width: 700px; margin: 0 auto; padding: 24px; }
+      .center { text-align: center; }
+      .slot-machine-layout { display: flex; flex-direction: row; gap: 32px; align-items: flex-start; }
+      .slot-machine { background: #3b1e00; border-radius: 24px; padding: 32px 24px 24px 24px; box-shadow: 0 8px 32px #000a; margin-bottom: 24px; flex: 3; position: relative;}
+      .reels { display: flex; justify-content: center; gap: 24px; margin-bottom: 20px; }
+      .reel {
+        width: 100px; height: 100px; background: #fffbe6;
+        border: 6px solid #bfa145; border-radius: 16px; display: flex; align-items: center; justify-content: center;
+        font-size: 3rem; box-shadow: 0 2px 12px #000a, 0 0 24px #fff70066 inset;
+        transition: box-shadow 0.2s;
+      }
+      .chips { display: flex; justify-content: center; gap: 18px; margin-bottom: 18px; }
+      .chip {
+        width: 56px; height: 56px; border-radius: 50%; background: #ffe066;
+        border: 4px solid #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.3rem; cursor: pointer; transition: border 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 10px #000a;
+        margin: 0 2px;
+        color: #3b1e00; /* <<< CHANGE 1a: Dark color for chip text */
+      }
+      .chip.selected { border: 4px solid #ff3; box-shadow: 0 0 16px #fff700; }
+      .shape-chip svg { width: 40px; height: 40px; }
+      .spin-btn {
+        background: linear-gradient(90deg, #ff2d2d 60%, #ffb300 100%);
+        color: #fff; padding: 16px 40px; border: none; border-radius: 12px; font-size: 1.5rem; cursor: pointer; margin-bottom: 14px;
+        box-shadow: 0 2px 8px #000a, 0 0 16px #fff70055;
+        font-weight: bold;
+        letter-spacing: 1px;
+        transition: filter 0.2s;
+      }
+      .spin-btn:disabled { background: #888; filter: grayscale(0.5); }
+      .message { font-size: 1.25rem; margin: 14px 0; min-height: 40px;}
+      .leaderboard { background: #1a1203; border-radius: 16px; padding: 18px 16px; max-width: 260px; margin: 0; box-shadow: 0 2px 12px #000a; flex: 1;}
+      .leaderboard h3 { margin: 0 0 10px 0; color: #ffd700; text-align: center; letter-spacing: 1px; }
+      .leaderboard-list { list-style: none; padding: 0; margin: 0; }
+      .leaderboard-list li { padding: 6px 0; font-size: 1.1rem; }
+      .player { color: #fff700; font-weight: bold; background: #3b2e00; border-radius: 6px; padding: 2px 8px;}
+      .sparkle-text {
+        animation: sparkle-text 0.7s alternate infinite;
+        text-shadow: 0 0 12px #fff700, 0 0 24px #fff70099;
+      }
+      @keyframes sparkle-text {
+        0% { text-shadow: 0 0 12px #fff700, 0 0 24px #fff70099; }
+        100% { text-shadow: 0 0 32px #fff700, 0 0 48px #fff700cc; }
+      }
+      @media (max-width: 900px) {
+        .slot-machine-layout { flex-direction: column; }
+        .leaderboard { max-width: 100%; margin-top: 24px;}
+      }
+    </style>
+  </head>
+  <body>
+  <div class="container">
+
+    <div class="instructions" id="instructions">
+      <h2>Slot Machine Game Instructions</h2>
+      <ul>
+            <li>You will play <b>10 rounds</b>. In each round, place your bet using casino chips, and choose a shape to bet on.</li>
+        <li><b>Higher the bet, higher the risk and potential reward.</b></li>
+        <li>Try to climb the leaderboard by winning more!</li>
+        <li>Press the <b>SPIN</b> button to play each round.</li>
+        <li>You start with <b>$2000</b> in your wallet. If you run out, you can't play further.</li>
+        <li>Good luck!</li>
+      
+      </ul>
+      <div class="center"><button class="spin-btn" onclick="startGame()">Start Game</button></div>
+    </div>
+
+    <div class="slot-machine-layout" id="gameLayout" style="display:none;">
+      <div id="game" class="slot-machine">
+        <div class="center">
+          <h2>Slot Machine Game</h2>
+          <div id="trialInfo"></div>
+        </div>
+        <div class="reels-bg" style="position:relative;">
+          <div class="reels" id="reels"></div>
+        </div>
+        <div class="chips" id="chips">
+          <div class="chip" data-value="1">$1</div>
+          <div class="chip" data-value="5">$5</div>
+          <div class="chip" data-value="10">$10</div>
+          <div class="chip" data-value="20">$20</div>
+        </div>
+        <div class="chips" id="shapeChips" style="margin-bottom:18px;">
+          <div class="chip shape-chip" data-shape="sphere" title="Bet on Sphere"></div>
+          <div class="chip shape-chip" data-shape="cube" title="Bet on Cube"></div>
+          <div class="chip shape-chip" data-shape="pyramid" title="Bet on Pyramid"></div>
+          <div class="chip shape-chip" data-shape="cylinder" title="Bet on Cylinder"></div>
+        </div>
+        <div class="center" id="gameMessage"></div>
+        <div class="center" style="margin-top:10px;">
+          <button class="spin-btn" id="spinBtn" onclick="spin()">SPIN</button>
+        </div>
+      </div>
+      <div class="leaderboard" id="leaderboard">
+        <h3>Leaderboard</h3>
+        <ol class="leaderboard-list" id="leaderboardList"></ol>
+      </div>
+    </div>
+
+    <div class="center" id="thankYou" style="display:none;">
+      <h2>Task Complete!</h2>
+      <p>The next task will begin shortly.</p>
+    </div>
+  </div>
+  <script>
+  const shapeSVGs = {
+    'sphere': `<svg width="80" height="80" viewBox="0 0 80 80"><defs><radialGradient id="g1" cx="50%" cy="40%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#a3f"/></radialGradient></defs><ellipse cx="40" cy="40" rx="32" ry="32" fill="url(#g1)" stroke="#5c2a7c" stroke-width="4"/></svg>`,
+    'cube': `<svg width="80" height="80" viewBox="0 0 80 80"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#3a6"/></linearGradient></defs><rect x="16" y="16" width="48" height="48" rx="8" fill="url(#g2)" stroke="#2a7c5c" stroke-width="4"/></svg>`,
+    'pyramid': `<svg width="80" height="80" viewBox="0 0 80 80"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#a3f"/></linearGradient></defs><polygon points="40,12 68,68 12,68" fill="url(#g3)" stroke="#5c2a7c" stroke-width="4"/></svg>`,
+    'cylinder': `<svg width="80" height="80" viewBox="0 0 80 80"><defs><linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#3a6"/></linearGradient></defs><ellipse cx="40" cy="20" rx="24" ry="10" fill="#fff" opacity="0.5"/><rect x="16" y="20" width="48" height="40" rx="24" fill="url(#g4)" stroke="#2a7c5c" stroke-width="4"/><ellipse cx="40" cy="60" rx="24" ry="10" fill="#3a6" stroke="#2a7c5c" stroke-width="4"/></svg>`
+  };
+  const allSymbols = ['sphere', 'cube', 'pyramid', 'cylinder'];
+  const winningCombos = [['sphere','sphere','sphere'], ['pyramid','pyramid','pyramid']];
+  let trialNum = 0;
+  let betAmount = 1;
+  let betShape = 'sphere';
+  const TOTAL_TRIALS = 10;
+  let leaderboard = [];
+  let trialData = [];
+
+  // --- Timestamp Variables ---
+  let startTimestamp = null;
+  let endTimestamp = null;
+
+  function startGame() {
+    startTimestamp = Date.now();
+    SyncMarkers.send("memory_retrieval_start");
+    console.log("Task 1 (Retrieval) Start UNIX Timestamp:", startTimestamp);
+
+    trialNum = 0;
+    trialData = [];
+    leaderboard = [
+      {name: "You", score: 100}
+    ];
+    for (let i = 1; i <= 10; i++) {
+      leaderboard.push({name: "Player " + i, score: 100 - i});
+    }
+    document.getElementById('instructions').style.display = 'none';
+    document.getElementById('gameLayout').style.display = 'flex';
+    updateGameUI();
+    renderLeaderboard();
+    document.querySelectorAll('.chip').forEach(chip => {
+      if (!chip.classList.contains('shape-chip')) {
+        chip.onclick = function() {
+          document.querySelectorAll('.chip').forEach(c => { if (!c.classList.contains('shape-chip')) c.classList.remove('selected'); });
+          chip.classList.add('selected');
+          betAmount = parseInt(chip.dataset.value);
+          document.getElementById('spinBtn').disabled = false;
+          document.getElementById('gameMessage').innerHTML = '';
+        }
+      }
+    });
+    renderShapeChips();
+  }
+  function renderShapeChips() {
+    const chips = document.querySelectorAll('.shape-chip');
+    chips.forEach(chip => {
+      const shape = chip.dataset.shape;
+      chip.innerHTML = shapeSVGs[shape];
+      chip.onclick = function() {
+        chips.forEach(c => c.classList.remove('selected'));
+        chip.classList.add('selected');
+        betShape = shape;
+      }
+    });
+    chips[0].classList.add('selected');
+    betShape = chips[0].dataset.shape;
+  }
+  function updateGameUI() {
+    document.getElementById('trialInfo').innerHTML = `<b>Trial ${trialNum+1} of ${TOTAL_TRIALS}</b>`;
+    renderReels(['❓','❓','❓']);
+    document.getElementById('gameMessage').innerHTML = '';
+    document.getElementById('spinBtn').disabled = false;
+    document.querySelectorAll('.chip').forEach(chip => { if (!chip.classList.contains('shape-chip')) chip.classList.remove('selected'); });
+    betAmount = 1;
+    document.querySelector('.chip[data-value="1"]').classList.add('selected');
+  }
+  function renderReels(symbols) {
+    const reelsDiv = document.getElementById('reels');
+    reelsDiv.innerHTML = '';
+    symbols.forEach(sym => {
+      const div = document.createElement('div');
+      div.className = 'reel';
+      div.innerHTML = shapeSVGs[sym] || '';
+      reelsDiv.appendChild(div);
+    });
+  }
+  function renderLeaderboard() {
+    const list = document.getElementById('leaderboardList');
+    list.innerHTML = '';
+    leaderboard.forEach((l,i) => {
+      const li = document.createElement('li');
+      li.innerText = l.name + " - $" + l.score;
+      if (i === 0) li.className = 'player';
+      list.appendChild(li);
+    });
+  }
+
+  function spin() {
+    document.getElementById('spinBtn').disabled = true;
+    let spinStartTime = Date.now();
+    let anim = setInterval(() => {
+      renderReels([
+        allSymbols[Math.floor(Math.random()*allSymbols.length)],
+        allSymbols[Math.floor(Math.random()*allSymbols.length)],
+        allSymbols[Math.floor(Math.random()*allSymbols.length)]
+      ]);
+    }, 70);
+
+    setTimeout(() => {
+      clearInterval(anim);
+      let combo = winningCombos[Math.floor(Math.random()*winningCombos.length)];
+      renderReels(combo);
+
+      trialData.push({
+          trial: trialNum + 1,
+          betAmount,
+          betShape,
+          combo: combo.join(','),
+          spinStartTime,
+          spinEndTime: Date.now()
+      });
+
+      trialNum++;
+      if (trialNum < TOTAL_TRIALS) {
+        setTimeout(() => {
+          updateGameUI();
+          renderLeaderboard();
+        }, 1400);
+      } else {
+        setTimeout(() => {
+          endTimestamp = Date.now();
+          SyncMarkers.send("memory_retrieval_end");
     console.log("Task 1 (Retrieval) End UNIX Timestamp:", endTimestamp);
-
-document.getElementById('gameLayout').style.display = 'none';
-
-document.getElementById('thankYou').style.display = 'block';
-
-const taskData = { startTimestamp, endTimestamp, trials: trialData };
-
-try { parent.postMessage({type:'taskComplete', task:1, data:
-taskData}, '*'); } catch(e) {}
-
-}, 1400);
-
-}
-
-}, 1100);
-
-}
-
-window.onload = function() {
-
-document.getElementById('instructions').style.display = '';
-
-document.getElementById('gameLayout').style.display = 'none';
-
-document.getElementById('thankYou').style.display = 'none';
-
-};
-
-</script>
-
-</body>
-
-</html>
-
-</template>
-
-<template id="task2-html">
-
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8" />
-
-<title>Digit Cancellation & Word Fragment Completion Tasks</title>
-
-<style>
-
-body { font-family: Arial, sans-serif; text-align: center; }
-
-#timer, #timerWord { font-size: 24px; margin: 20px; }
-
-#instructions { margin: 20px; }
-
-#grid { display: grid; grid-template-columns: repeat(10, 36px); gap:
-3px; justify-content: center; margin: 20px auto; width: max-content; }
-
-.cell { width: 34px; height: 34px; border: 1px solid #ccc; font-size:
-20px; display: flex; align-items: center; justify-content: center;
-cursor: pointer; }
-
-.marked { background: #aaf; }
-
-#progress { margin: 20px; }
-
-#result, #wordResult { font-size: 20px; color: green; margin: 20px; }
-
-#wordTask { margin-top: 30px; }
-
-#fragmentBox { font-size: 20px; margin: 20px; }
-
-#completionInput { font-size: 18px; padding: 6px; }
-
-#submitWord { font-size: 18px; padding: 6px 14px; margin-left: 7px;}
-
-</style>
-
-</head>
-
-<body>
-
-<div id="mainInstructions">
-
-<h2>Task Instructions</h2>
-
-<p style="max-width: 600px; margin: 20px auto; text-align: left;
-line-height: 1.6;">
-
-You are about to begin two short tasks:
-
-<br><br>
-
-<b>1. Digit Cancellation:</b> You will be shown several grids of
-numbers. Your task is to click on all instances of a specific "target"
-digit (e.g., "click all 7s"). You will have 30 seconds for each grid.
-
-<br><br>
-
-<b>2. Word Fragment Completion:</b> After the digit task, you will
-be shown word fragments (e.g., "C_M__"). Please type the first
-complete word that comes to your mind.
-
-<br><br>
-
-Click <b>Start</b> when you are ready to begin the Digit
-Cancellation task.
-
-</p>
-
-<button id="startMainTaskBtn" style="font-size: 1.2em; padding: 10px
-20px; cursor: pointer;">Start</button>
-
-</div>
-
-<div id="taskContainer" style="display:none;">
-
-<h1 id="mainTitle">Digit Cancellation Task (5 Minutes)</h1>
-
-<div id="instructions">
-
-In each grid, click all instances of the digit <b
-id="targetDigit"></b>.<br>
-
-A new grid will appear every 30 seconds!
-
-</div>
-
-<div id="timer">Time left: 05:00</div>
-
-<div id="progress"></div>
-
-<div id="grid"></div>
-
-<div id="result"></div>
-
-<div id="wordTask" style="display:none;">
-
-<div id="fragmentInstructions" style="margin: 20px;">
-
-Complete the word fragment in each box with the first valid word that
-comes to your mind.<br>
-
-</div>
-
-<div id="timerWord">Time left: 05:00</div>
-
-<div id="wordProgress"></div>
-
-<div id="fragmentBox"></div>
-
-<input type="text" id="completionInput" maxlength="16"
-autocomplete="off">
-
-<button id="submitWord">Submit</button>
-
-<div id="wordResult"></div>
-
-</div>
-
-</div>
-
-<script>
-
-// --- TIMESTAMPS & DATA ---
-
-let startTimestamp = null, digitEndTimestamp = null, wordStartTimestamp
-= null, wordEndTimestamp = null;
-
-let digitData = { found: 0, total: 0 };
-
-let wordData = { responses: [] };
-
-// --- Digit Cancellation Variables ---
-
-const TOTAL_TIME = 5 * 60; // 5 minutes in seconds
-
-const GRID_TIME = 30; // each grid lasts 30 seconds
-
-const GRIDS = TOTAL_TIME / GRID_TIME; // 10 grids
-
-const ROWS = 10, COLS = 10;
-
-let timeLeft = TOTAL_TIME, gridCount = 0;
-
-let timerInterval, gridInterval, currentTarget = 0;
-
-// --- Word Fragment Variables ---
-
-const FRAGMENTS = [
-
-"B_L_", "CA_E", "STR__", "H_N__", "P__PLE",
-"C_M__", "_OUSE", "TRE_", "_AT", "_O__SE"
-
-];
-
-const FRAG_TIME = 30; // 30s per fragment
-
-const FRAG_COUNT = FRAGMENTS.length;
-
-let fragmentIdx = 0, wordTimeLeft = FRAG_COUNT * FRAG_TIME;
-
-let timerWordInterval, fragmentInterval;
-
-let submittedCurrentFragment = false;
-
-function randomDigit() { return Math.floor(Math.random() * 10); }
-
-function updateTimer() {
-
-let min = Math.floor(timeLeft / 60), sec = timeLeft % 60;
-
-document.getElementById('timer').textContent =
-
-`Time left: ${min.toString().padStart(2,
-'0')}:${sec.toString().padStart(2, '0')}`;
-
-}
-
-function nextGrid() {
-
-gridCount++;
-
-if (gridCount > GRIDS) return;
-
-currentTarget = randomDigit();
-
-document.getElementById('targetDigit').textContent = currentTarget;
-
-document.getElementById('progress').textContent = `Grid ${gridCount}
-of ${GRIDS}`;
-
-const grid = document.getElementById('grid');
-
-grid.innerHTML = '';
-
-let gridTargets = 0;
-
-for (let i = 0; i < ROWS * COLS; i++) {
-
-const cell = document.createElement('div');
-
-cell.className = 'cell';
-
-const digit = randomDigit();
-
-cell.textContent = digit;
-
-cell.dataset.digit = digit;
-
-if (digit == currentTarget) gridTargets++;
-
-cell.addEventListener('click', function() {
-
-if (!cell.classList.contains('marked')) {
-
-if (cell.dataset.digit == currentTarget) {
-
-cell.classList.add('marked');
-
-digitData.found++;
-
-}
-
-}
-
-});
-
-grid.appendChild(cell);
-
-}
-
-digitData.total += gridTargets;
-
-}
-
-function endDigitTask() {
-
-clearInterval(timerInterval);
-
-clearInterval(gridInterval);
-
-document.getElementById('result').textContent =
-
-`Task complete! You found ${digitData.found} out of
-${digitData.total} target digits.`;
-
-document.getElementById('grid').innerHTML = '';
-
-digitEndTimestamp = Date.now();
-
-SyncMarkers.send("digit_cancellation_end");
-    console.log("Digit Cancellation Part End UNIX Timestamp:",
-digitEndTimestamp);
-
-setTimeout(startWordFragmentTask, 2000);
-
-}
-
-function startTask() {
-
-startTimestamp = Date.now();
-
-SyncMarkers.send("digit_cancellation_start");
-    console.log("Task 2 (Digit/Word) Start UNIX Timestamp:",
-startTimestamp);
-
-updateTimer();
-
-timerInterval = setInterval(() => {
-
-timeLeft--;
-
-updateTimer();
-
-if (timeLeft <= 0) endDigitTask();
-
-}, 1000);
-
-nextGrid();
-
-gridInterval = setInterval(() => { if (timeLeft > 0) nextGrid(); },
-GRID_TIME * 1000);
-
-}
-
-// --- Word Fragment Completion Task ---
-
-function updateWordTimer() {
-
-let min = Math.floor(wordTimeLeft / 60), sec = wordTimeLeft % 60;
-
-document.getElementById('timerWord').textContent =
-
-`Time left: ${min.toString().padStart(2,
-'0')}:${sec.toString().padStart(2, '0')}`;
-
-}
-
-function showFragment(idx) {
-
-document.getElementById('fragmentBox').textContent = FRAGMENTS[idx];
-
-document.getElementById('completionInput').value = '';
-
-document.getElementById('completionInput').focus();
-
-document.getElementById('wordProgress').textContent = `Fragment
-${idx+1} of ${FRAG_COUNT}`;
-
-document.getElementById('wordResult').textContent = '';
-
-submittedCurrentFragment = false;
-
-enableInput(true);
-
-}
-
-function enableInput(enable) {
-
-document.getElementById('completionInput').disabled = !enable;
-
-document.getElementById('submitWord').disabled = !enable;
-
-}
-
-function submitCurrentWord() {
-
-if (!submittedCurrentFragment) {
-
-let response =
-document.getElementById('completionInput').value.trim();
-
-wordData.responses[fragmentIdx] = { fragment:
-FRAGMENTS[fragmentIdx], response: response ? response : "---" };
-
-document.getElementById('wordResult').textContent =
-
-`Response saved: ${response || '---'}`;
-
-submittedCurrentFragment = true;
-
-enableInput(false); // lock after submit
-
-}
-
-}
-
-function nextFragment() {
-
-submitCurrentWord();
-
-fragmentIdx++;
-
-if (fragmentIdx < FRAG_COUNT) {
-
-showFragment(fragmentIdx);
-
-} else {
-
-endWordFragmentTask();
-
-}
-
-}
-
-function startWordFragmentTask() {
-
-document.getElementById('mainTitle').textContent = "Word Fragment
-Completion Task (5 Minutes)";
-
-document.getElementById('instructions').style.display = 'none';
-
-document.getElementById('result').style.display = 'none';
-
-document.getElementById('grid').style.display = 'none';
-
-document.getElementById('progress').style.display = 'none';
-
-document.getElementById('wordTask').style.display = 'block';
-
-wordStartTimestamp = Date.now();
-
-SyncMarkers.send("word_fragment_start");
-    console.log("Word Fragment Part Start UNIX Timestamp:",
-wordStartTimestamp);
-
-wordTimeLeft = FRAG_COUNT * FRAG_TIME;
-
-fragmentIdx = 0;
-
-wordData.responses = [];
-
-showFragment(fragmentIdx);
-
-updateWordTimer();
-
-timerWordInterval = setInterval(() => {
-
-wordTimeLeft--;
-
-updateWordTimer();
-
-if (wordTimeLeft <= 0) endWordFragmentTask();
-
-}, 1000);
-
-fragmentInterval = setInterval(() => {
-
-nextFragment();
-
-}, FRAG_TIME * 1000);
-
-}
-
-function endWordFragmentTask() {
-
-clearInterval(timerWordInterval);
-
-clearInterval(fragmentInterval);
-
-submitCurrentWord();
-
-wordEndTimestamp = Date.now();
-
-SyncMarkers.send("word_fragment_end");
-    console.log("Task 2 (Digit/Word) End UNIX Timestamp:",
-wordEndTimestamp);
-
-document.getElementById('fragmentBox').innerHTML = '';
-
-document.getElementById('completionInput').style.display = 'none';
-
-document.getElementById('submitWord').style.display = 'none';
-
-document.getElementById('wordProgress').textContent = '';
-
-document.getElementById('wordResult').innerHTML =
-
-'Word Fragment Task complete!';
-
-const taskData = {
-
-startTimestamp,
-
-digitCancellationEnd: digitEndTimestamp,
-
-wordFragmentStart: wordStartTimestamp,
-
-endTimestamp: wordEndTimestamp,
-
-digitCancellationData: digitData,
-
-wordFragmentData: wordData
-
-};
-
-try { parent.postMessage({type:'taskComplete', task:2, data:
-taskData}, '*'); } catch(e) {}
-
-}
-
-document.getElementById('submitWord').onclick = submitCurrentWord;
-
-document.getElementById('completionInput').addEventListener('keyup',
-function(e){
-
-if (e.key === 'Enter') submitCurrentWord();
-
-});
-
-// window.onload = startTask; // <-- CHANGE 3a: Removed old onload
-
-// CHANGE 3a: Added new start logic
-
-document.getElementById('startMainTaskBtn').onclick = function() {
-
-document.getElementById('mainInstructions').style.display = 'none';
-
-document.getElementById('taskContainer').style.display = 'block';
-
-startTask(); // This is the original starting function
-
-};
-
-</script>
-
-</body>
-
-</html>
-
-</template>
-
-<template id="task3-html">
-
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>6 Breaths Per Minute Breathing Task</title>
-
-<meta name="viewport" content="width=device-width,
-initial-scale=1.0">
-
-<style>
-
-body {
-
-font-family: Arial, sans-serif;
-
-background: #1a1a2e;
-
-color: #fff;
-
-display: flex;
-
-flex-direction: column;
-
-align-items: center;
-
-justify-content: center;
-
-min-height: 100vh;
-
-margin: 0;
-
-}
-
-.container {
-
-background: #16213e;
-
-padding: 2em 3em;
-
-border-radius: 16px;
-
-box-shadow: 0 4px 32px rgba(0,0,0,0.2);
-
-text-align: center;
-
-max-width: 720px;
-
-}
-
-.breath-circle {
-
-margin: 2em auto;
-
-width: 120px;
-
-height: 120px;
-
-background: #0f3460;
-
-border-radius: 50%;
-
-transition: transform 5s ease-in-out;
-
-display: flex;
-
-align-items: center;
-
-justify-content: center;
-
-font-size: 1.5em;
-
-color: #e94560;
-
-box-shadow: 0 0 30px #e94560a0;
-
-user-select: none;
-
-}
-
-.timer {
-
-font-size: 1.2em;
-
-margin-top: 1em;
-
-color: #e94560;
-
-letter-spacing: 0.08em;
-
-}
-
-.instructions {
-
-margin-bottom: 1em;
-
-font-size: 1.05em;
-
-line-height: 1.6;
-
-color:#e5e7eb;
-
-}
-
-button {
-
-margin-top: 1em;
-
-padding: 0.5em 2em;
-
-font-size: 1.1em;
-
-background: #e94560;
-
-color: #fff;
-
-border: none;
-
-border-radius: 8px;
-
-cursor: pointer;
-
-transition: background 0.2s;
-
-font-weight:700;
-
-}
-
-button:hover { background: #f76b8a; }
-
-audio { margin-top: 1em; width: 100%; }
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-<h2>Breathing Task: 6 Breaths Per Minute</h2>
-
-<div class="instructions">
-
-Please listen to <b>the music</b> and follow the breathing guide
-below.<br>
-
-Breathe in as the circle expands, and breathe out as it contracts.<br>
-
-Target: <b>6 breaths/min</b> (inhale 5&nbsp;s, exhale 5&nbsp;s).
-
-</div>
-
-<audio controls>
-
-<source
-src="https://dn721609.ca.archive.org/0/items/marconi-union-weightless-528hz/Marconi%20Union%20Weightless%20%28528hz%29.mp3"
-type="audio/mp3">
-
-Your browser does not support the audio element.
-
-</audio>
-
-<div id="breathCircle" class="breath-circle">Ready?</div>
-
-<div class="timer" id="timer">10:00</div>
-
-<button id="startBtn">Start</button>
-
-</div>
-
-<script>
-
-// --- TIMESTAMPS ---
-
-let startTimestamp = null;
-
-let endTimestamp = null;
-
-// --- UI refs ---
-
-const breathCircle = document.getElementById('breathCircle');
-
-const timerDisplay = document.getElementById('timer');
-
-const startBtn = document.getElementById('startBtn');
-
-const audio = document.querySelector('audio');
-
-// --- timings ---
-
-const sessionLength = 600; // 10 minutes
-
-const breathCycle = 10; // 5s inhale + 5s exhale
-
-let interval, timerInterval, timeLeft = sessionLength;
-
-function updateTimer(){
-
-const m = String(Math.floor(timeLeft/60)).padStart(2,'0');
-
-const s = String(timeLeft%60).padStart(2,'0');
-
-timerDisplay.textContent = `${m}:${s}`;
-
-}
-
-function startTask(){
-
-startBtn.disabled = true;
-
-timeLeft = sessionLength;
-
-updateTimer();
-
-audio.currentTime = 0;
-
-audio.play().catch(()=>{});
-
-startTimestamp = Date.now();
-
-console.log("Breathing Task Start UNIX Timestamp:", startTimestamp);
+          document.getElementById('gameLayout').style.display = 'none';
+          document.getElementById('thankYou').style.display = 'block';
+
+          const taskData = { startTimestamp, endTimestamp, trials: trialData };
+          try { parent.postMessage({type:'taskComplete', task:1, data: taskData}, '*'); } catch(e) {}
+        }, 1400);
+      }
+    }, 1100);
+  }
+  window.onload = function() {
+    document.getElementById('instructions').style.display = '';
+    document.getElementById('gameLayout').style.display = 'none';
+    document.getElementById('thankYou').style.display = 'none';
+  };
+  </script>
+  </body>
+  </html>
+  </template>
+
+  <template id="task2-html">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Digit Cancellation & Word Fragment Completion Tasks</title>
+    <style>
+      body { font-family: Arial, sans-serif; text-align: center; }
+      #timer, #timerWord { font-size: 24px; margin: 20px; }
+      #instructions { margin: 20px; }
+      #grid { display: grid; grid-template-columns: repeat(10, 36px); gap: 3px; justify-content: center; margin: 20px auto; width: max-content; }
+      .cell { width: 34px; height: 34px; border: 1px solid #ccc; font-size: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+      .marked { background: #aaf; }
+      #progress { margin: 20px; }
+      #result, #wordResult { font-size: 20px; color: green; margin: 20px; }
+      #wordTask { margin-top: 30px; }
+      #fragmentBox { font-size: 20px; margin: 20px; }
+      #completionInput { font-size: 18px; padding: 6px; }
+      #submitWord { font-size: 18px; padding: 6px 14px; margin-left: 7px;}
+    </style>
+  </head>
+  <body>
+  
+    <div id="mainInstructions">
+      <h2>Task Instructions</h2>
+      <p style="max-width: 600px; margin: 20px auto; text-align: left; line-height: 1.6;">
+        You are about to begin two short tasks:
+        <br><br>
+        <b>1. Digit Cancellation:</b> You will be shown several grids of numbers. Your task is to click on all instances of a specific "target" digit (e.g., "click all 7s"). You will have 30 seconds for each grid.
+        <br><br>
+        <b>2. Word Fragment Completion:</b> After the digit task, you will be shown word fragments (e.g., "C_M__"). Please type the first complete word that comes to your mind.
+        <br><br>
+        Click <b>Start</b> when you are ready to begin the Digit Cancellation task.
+      </p>
+      <button id="startMainTaskBtn" style="font-size: 1.2em; padding: 10px 20px; cursor: pointer;">Start</button>
+    </div>
+
+    <div id="taskContainer" style="display:none;">
+      <h1 id="mainTitle">Digit Cancellation Task (5 Minutes)</h1>
+      <div id="instructions">
+        In each grid, click all instances of the digit <b id="targetDigit"></b>.<br>
+        A new grid will appear every 30 seconds!
+      </div>
+      <div id="timer">Time left: 05:00</div>
+      <div id="progress"></div>
+      <div id="grid"></div>
+      <div id="result"></div>
+
+      <div id="wordTask" style="display:none;">
+        <div id="fragmentInstructions" style="margin: 20px;">
+          Complete the word fragment in each box with the first valid word that comes to your mind.<br>
+        </div>
+        <div id="timerWord">Time left: 05:00</div>
+        <div id="wordProgress"></div>
+        <div id="fragmentBox"></div>
+        <input type="text" id="completionInput" maxlength="16" autocomplete="off">
+        <button id="submitWord">Submit</button>
+        <div id="wordResult"></div>
+      </div>
+    </div>
+
+    <script>
+      // --- TIMESTAMPS & DATA ---
+      let startTimestamp = null, digitEndTimestamp = null, wordStartTimestamp = null, wordEndTimestamp = null;
+      let digitData = { found: 0, total: 0 };
+      let wordData = { responses: [] };
+
+      // --- Digit Cancellation Variables ---
+      const TOTAL_TIME = 5 * 60; // 5 minutes in seconds
+      const GRID_TIME = 30; // each grid lasts 30 seconds
+      const GRIDS = TOTAL_TIME / GRID_TIME; // 10 grids
+      const ROWS = 10, COLS = 10;
+      let timeLeft = TOTAL_TIME, gridCount = 0;
+      let timerInterval, gridInterval, currentTarget = 0;
+
+      // --- Word Fragment Variables ---
+      const FRAGMENTS = [
+        "B_L_", "CA_E", "STR__", "H_N__", "P__PLE", "C_M__", "_OUSE", "TRE_", "_AT", "_O__SE"
+      ];
+      const FRAG_TIME = 30; // 30s per fragment
+      const FRAG_COUNT = FRAGMENTS.length;
+      let fragmentIdx = 0, wordTimeLeft = FRAG_COUNT * FRAG_TIME;
+      let timerWordInterval, fragmentInterval;
+      let submittedCurrentFragment = false;
+
+      function randomDigit() { return Math.floor(Math.random() * 10); }
+
+      function updateTimer() {
+        let min = Math.floor(timeLeft / 60), sec = timeLeft % 60;
+        document.getElementById('timer').textContent =
+          `Time left: ${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+      }
+
+      function nextGrid() {
+        gridCount++;
+        if (gridCount > GRIDS) return;
+        currentTarget = randomDigit();
+        document.getElementById('targetDigit').textContent = currentTarget;
+        document.getElementById('progress').textContent = `Grid ${gridCount} of ${GRIDS}`;
+        const grid = document.getElementById('grid');
+        grid.innerHTML = '';
+        let gridTargets = 0;
+        for (let i = 0; i < ROWS * COLS; i++) {
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          const digit = randomDigit();
+          cell.textContent = digit;
+          cell.dataset.digit = digit;
+          if (digit == currentTarget) gridTargets++;
+          cell.addEventListener('click', function() {
+            if (!cell.classList.contains('marked')) {
+              if (cell.dataset.digit == currentTarget) {
+                cell.classList.add('marked');
+                digitData.found++;
+              }
+            }
+          });
+          grid.appendChild(cell);
+        }
+        digitData.total += gridTargets;
+      }
+
+      function endDigitTask() {
+        clearInterval(timerInterval);
+        clearInterval(gridInterval);
+        document.getElementById('result').textContent =
+          `Task complete! You found ${digitData.found} out of ${digitData.total} target digits.`;
+        document.getElementById('grid').innerHTML = '';
+        digitEndTimestamp = Date.now();
+        SyncMarkers.send("digit_cancellation_end");
+    console.log("Digit Cancellation Part End UNIX Timestamp:", digitEndTimestamp);
+        setTimeout(startWordFragmentTask, 2000);
+      }
+
+      function startTask() {
+        startTimestamp = Date.now();
+        SyncMarkers.send("digit_cancellation_start");
+    console.log("Task 2 (Digit/Word) Start UNIX Timestamp:", startTimestamp);
+        updateTimer();
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          updateTimer();
+          if (timeLeft <= 0) endDigitTask();
+        }, 1000);
+        nextGrid();
+        gridInterval = setInterval(() => { if (timeLeft > 0) nextGrid(); }, GRID_TIME * 1000);
+      }
+
+      // --- Word Fragment Completion Task ---
+      function updateWordTimer() {
+        let min = Math.floor(wordTimeLeft / 60), sec = wordTimeLeft % 60;
+        document.getElementById('timerWord').textContent =
+          `Time left: ${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+      }
+
+      function showFragment(idx) {
+        document.getElementById('fragmentBox').textContent = FRAGMENTS[idx];
+        document.getElementById('completionInput').value = '';
+        document.getElementById('completionInput').focus();
+        document.getElementById('wordProgress').textContent = `Fragment ${idx+1} of ${FRAG_COUNT}`;
+        document.getElementById('wordResult').textContent = '';
+        submittedCurrentFragment = false;
+        enableInput(true);
+      }
+
+      function enableInput(enable) {
+        document.getElementById('completionInput').disabled = !enable;
+        document.getElementById('submitWord').disabled = !enable;
+      }
+
+      function submitCurrentWord() {
+        if (!submittedCurrentFragment) {
+          let response = document.getElementById('completionInput').value.trim();
+          wordData.responses[fragmentIdx] = { fragment: FRAGMENTS[fragmentIdx], response: response ? response : "---" };
+          document.getElementById('wordResult').textContent =
+            `Response saved: ${response || '---'}`;
+          submittedCurrentFragment = true;
+          enableInput(false); // lock after submit
+        }
+      }
+
+      function nextFragment() {
+        submitCurrentWord();
+        fragmentIdx++;
+        if (fragmentIdx < FRAG_COUNT) {
+          showFragment(fragmentIdx);
+        } else {
+          endWordFragmentTask();
+        }
+      }
+
+      function startWordFragmentTask() {
+        document.getElementById('mainTitle').textContent = "Word Fragment Completion Task (5 Minutes)";
+        document.getElementById('instructions').style.display = 'none';
+        document.getElementById('result').style.display = 'none';
+        document.getElementById('grid').style.display = 'none';
+        document.getElementById('progress').style.display = 'none';
+        document.getElementById('wordTask').style.display = 'block';
+        wordStartTimestamp = Date.now();
+        SyncMarkers.send("word_fragment_start");
+    console.log("Word Fragment Part Start UNIX Timestamp:", wordStartTimestamp);
+        wordTimeLeft = FRAG_COUNT * FRAG_TIME;
+        fragmentIdx = 0;
+        wordData.responses = [];
+        showFragment(fragmentIdx);
+        updateWordTimer();
+        timerWordInterval = setInterval(() => {
+          wordTimeLeft--;
+          updateWordTimer();
+          if (wordTimeLeft <= 0) endWordFragmentTask();
+        }, 1000);
+        fragmentInterval = setInterval(() => {
+          nextFragment();
+        }, FRAG_TIME * 1000);
+      }
+
+      function endWordFragmentTask() {
+        clearInterval(timerWordInterval);
+        clearInterval(fragmentInterval);
+        submitCurrentWord();
+        wordEndTimestamp = Date.now();
+        SyncMarkers.send("word_fragment_end");
+    console.log("Task 2 (Digit/Word) End UNIX Timestamp:", wordEndTimestamp);
+        document.getElementById('fragmentBox').innerHTML = '';
+        document.getElementById('completionInput').style.display = 'none';
+        document.getElementById('submitWord').style.display = 'none';
+        document.getElementById('wordProgress').textContent = '';
+        document.getElementById('wordResult').innerHTML =
+          'Word Fragment Task complete!';
+        
+        const taskData = {
+            startTimestamp,
+            digitCancellationEnd: digitEndTimestamp,
+            wordFragmentStart: wordStartTimestamp,
+            endTimestamp: wordEndTimestamp,
+            digitCancellationData: digitData,
+            wordFragmentData: wordData
+        };
+        try { parent.postMessage({type:'taskComplete', task:2, data: taskData}, '*'); } catch(e) {}
+      }
+
+      document.getElementById('submitWord').onclick = submitCurrentWord;
+      document.getElementById('completionInput').addEventListener('keyup', function(e){
+        if (e.key === 'Enter') submitCurrentWord();
+      });
+
+      // window.onload = startTask; // <-- CHANGE 3a: Removed old onload
+      
+      // CHANGE 3a: Added new start logic
+      document.getElementById('startMainTaskBtn').onclick = function() {
+        document.getElementById('mainInstructions').style.display = 'none';
+        document.getElementById('taskContainer').style.display = 'block';
+        startTask(); // This is the original starting function
+      };
+    </script>
+  </body>
+  </html>
+  </template>
+
+  <template id="task3-html">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>6 Breaths Per Minute Breathing Task</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #1a1a2e;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+      .container {
+        background: #16213e;
+        padding: 2em 3em;
+        border-radius: 16px;
+        box-shadow: 0 4px 32px rgba(0,0,0,0.2);
+        text-align: center;
+        max-width: 720px;
+      }
+      .breath-circle {
+        margin: 2em auto;
+        width: 120px;
+        height: 120px;
+        background: #0f3460;
+        border-radius: 50%;
+        transition: transform 5s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5em;
+        color: #e94560;
+        box-shadow: 0 0 30px #e94560a0;
+        user-select: none;
+      }
+      .timer {
+        font-size: 1.2em;
+        margin-top: 1em;
+        color: #e94560;
+        letter-spacing: 0.08em;
+      }
+      .instructions {
+        margin-bottom: 1em;
+        font-size: 1.05em;
+        line-height: 1.6;
+        color:#e5e7eb;
+      }
+      button {
+        margin-top: 1em;
+        padding: 0.5em 2em;
+        font-size: 1.1em;
+        background: #e94560;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s;
+        font-weight:700;
+      }
+      button:hover { background: #f76b8a; }
+      audio { margin-top: 1em; width: 100%; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Breathing Task: 6 Breaths Per Minute</h2>
+      <div class="instructions">
+        Please listen to <b>the music</b> and follow the breathing guide below.<br>
+        Breathe in as the circle expands, and breathe out as it contracts.<br>
+        Target: <b>6 breaths/min</b> (inhale 5&nbsp;s, exhale 5&nbsp;s).
+      </div>
+      <audio controls>
+        <source src="https://dn721609.ca.archive.org/0/items/marconi-union-weightless-528hz/Marconi%20Union%20Weightless%20%28528hz%29.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+      <div id="breathCircle" class="breath-circle">Ready?</div>
+      <div class="timer" id="timer">10:00</div>
+      <button id="startBtn">Start</button>
+    </div>
+
+    <script>
+      // --- TIMESTAMPS ---
+      let startTimestamp = null;
+      let endTimestamp = null;
+
+      // --- UI refs ---
+      const breathCircle = document.getElementById('breathCircle');
+      const timerDisplay = document.getElementById('timer');
+      const startBtn = document.getElementById('startBtn');
+      const audio = document.querySelector('audio');
+
+      // --- timings ---
+      const sessionLength = 600;     // 10 minutes
+      const breathCycle = 10;      // 5s inhale + 5s exhale
+      let interval, timerInterval, timeLeft = sessionLength;
+
+      function updateTimer(){
+        const m = String(Math.floor(timeLeft/60)).padStart(2,'0');
+        const s = String(timeLeft%60).padStart(2,'0');
+        timerDisplay.textContent = `${m}:${s}`;
+      }
+
+      function startTask(){
+        startBtn.disabled = true;
+        timeLeft = sessionLength;
+        updateTimer();
+        audio.currentTime = 0;
+        audio.play().catch(()=>{});
+
+        startTimestamp = Date.now();
+        console.log("Breathing Task Start UNIX Timestamp:", startTimestamp);
     SyncMarkers.send("breathing_task_start");
 
-breathCircle.textContent = 'Inhale';
+        breathCircle.textContent = 'Inhale';
+        breathCircle.style.transform = 'scale(1.5)';
+        let tick = 0;
 
-breathCircle.style.transform = 'scale(1.5)';
+        clearInterval(interval);
+        interval = setInterval(() => {
+          tick = (tick + 1) % breathCycle;
+          if (tick === 0){
+            breathCircle.textContent = 'Inhale';
+            breathCircle.style.transform = 'scale(1.5)';
+          } else if (tick === 5){
+            breathCircle.textContent = 'Exhale';
+            breathCircle.style.transform = 'scale(1)';
+          }
+        }, 1000);
 
-let tick = 0;
+        clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          updateTimer();
+          if (timeLeft <= 0){
+            clearInterval(interval);
+            clearInterval(timerInterval);
+            breathCircle.textContent = 'Done!';
+            audio.pause();
+            startBtn.disabled = true;
 
-clearInterval(interval);
-
-interval = setInterval(() => {
-
-tick = (tick + 1) % breathCycle;
-
-if (tick === 0){
-
-breathCircle.textContent = 'Inhale';
-
-breathCircle.style.transform = 'scale(1.5)';
-
-} else if (tick === 5){
-
-breathCircle.textContent = 'Exhale';
-
-breathCircle.style.transform = 'scale(1)';
-
-}
-
-}, 1000);
-
-clearInterval(timerInterval);
-
-timerInterval = setInterval(() => {
-
-timeLeft--;
-
-updateTimer();
-
-if (timeLeft <= 0){
-
-clearInterval(interval);
-
-clearInterval(timerInterval);
-
-breathCircle.textContent = 'Done!';
-
-audio.pause();
-
-startBtn.disabled = true;
-
-endTimestamp = Date.now();
-
-console.log("Breathing Task End UNIX Timestamp:", endTimestamp);
+            endTimestamp = Date.now();
+            console.log("Breathing Task End UNIX Timestamp:", endTimestamp);
     SyncMarkers.send("breathing_task_end");
-
-const taskData = { startTimestamp, endTimestamp };
-
-try { parent.postMessage({type:'taskComplete', task:3, data: taskData
-}, '*'); } catch(e) {}
-
-}
-
-}, 1000);
-
-}
-
-startBtn.addEventListener('click', startTask);
-
-</script>
-
-</body>
-
-</html>
-
-</template>
-
-<template id="task4-html">
-
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>Trail Making Task -- 10 Trail Types</title>
-
-<style>
-
-body { font-family: Arial, sans-serif; text-align: center; }
-
-#instructions { margin: 20px; font-size: 1.1rem; }
-
-#timer, #total-timer { font-size: 24px; margin: 10px; }
-
-#result { font-size: 20px; color: green; margin: 20px; }
-
-#grid {
-
-display: grid;
-
-grid-template-columns: repeat(5, 60px);
-
-grid-gap: 18px;
-
-justify-content: center;
-
-margin: 30px auto;
-
-width: max-content;
-
-}
-
-.circle-btn {
-
-width: 56px;
-
-height: 56px;
-
-border-radius: 50%;
-
-border: 2px solid #333;
-
-font-size: 20px;
-
-background: #fff;
-
-cursor: pointer;
-
-transition: background 0.2s, color 0.2s;
-
-}
-
-.circle-btn.correct {
-
-background: #aaf;
-
-color: #333;
-
-border-color: #77f;
-
-cursor: default;
-
-}
-
-.circle-btn:disabled {
-
-opacity: 0.6;
-
-cursor: default;
-
-}
-
-#history {
-
-margin-top: 24px;
-
-font-size: 18px;
-
-color: #444;
-
-}
-
-#history ul {
-
-list-style: none;
-
-padding: 0;
-
-margin: 0;
-
-display: inline-block;
-
-text-align: left;
-
-}
-
-#history li {
-
-margin-bottom: 4px;
-
-}
-
-#end-message {
-
-color: #b00;
-
-font-size: 22px;
-
-margin-top: 30px;
-
-font-weight: bold;
-
-}
-
-button.start-btn {
-
-font-size: 1.1rem;
-
-padding: 8px 28px;
-
-margin-top: 18px;
-
-background: #77f;
-
-color: #fff;
-
-border: none;
-
-border-radius: 8px;
-
-cursor: pointer;
-
-}
-
-button.start-btn:hover {
-
-background: #55c;
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div id="mainInstructions">
-
-<h2>Trail Making Task Instructions</h2>
-
-<p style="max-width: 600px; margin: 20px auto; text-align: left;
-line-height: 1.6;">
-
-You are about to begin the <b>Trail Making Task</b>.
-
-<br><br>
-
-You will be presented with a series of 10 different "trails."
-
-<br><br>
-
-For each trail, you will see 25 circles on the screen. Your task is to
-click them in a specific order as fast as you can.
-
-<br><br>
-
-The instructions for each trail (e.g., "Click numbers 1-25" or "Click
-1-A-2-B...") will be shown before it begins.
-
-<br><br>
-
-Click <b>Start</b> when you are ready to see the instructions for
-the first trail.
-
-</p>
-
-<button id="startMainTaskBtn" style="font-size: 1.1rem; padding: 8px
-28px; cursor: pointer; background: #77f; color: #fff; border: none;
-border-radius: 8px;">Start</button>
-
-</div>
-
-<div id="taskContainer" style="display:none;">
-
-<h1>Trail Making Task</h1>
-
-<div id="instructions"></div>
-
-<div id="total-timer">Total Time Left: 05:00</div>
-
-<div id="timer">Round Time: 0.00 s</div>
-
-<div id="grid"></div>
-
-<div id="result"></div>
-
-<div id="history"></div>
-
-<div id="end-message"></div>
-
-</div>
-
-<script>
-
-// --- TIMESTAMP & DATA LOGIC ---
-
-let startTimestamp = null;
-
-let endTimestamp = null;
-
-let allTrailData = [];
-
-// --- TRAIL DEFINITIONS ---
-
-const trailTypes = [
-
-{
-
-label: "Numbers 1--25",
-
-instructions: "Click the buttons in ascending order from <b>1</b>
-to <b>25</b>.",
-
-sequence: () => Array.from({length: 25}, (_, i) => (i +
-1).toString())
-
-},
-
-{
-
-label: "Alternating Numbers & Letters",
-
-instructions: "Click the buttons in alternating order: <b>1, A, 2, B,
-3, C, ...</b> as quickly as possible.",
-
-sequence: () => {
-
-let arr = [];
-
-for (let i = 1; i <= 13; i++) {
-
-arr.push(i.toString());
-
-if (i <= 13) arr.push(String.fromCharCode(64 + i)); // A--M
-
-}
-
-return arr.slice(0, 25);
-
-}
-
-},
-
-{
-
-label: "Letters A--Y",
-
-instructions: "Click the buttons in alphabetical order from
-<b>A</b> to <b>Y</b> as quickly as possible.",
-
-sequence: () => Array.from({length: 25}, (_, i) =>
-String.fromCharCode(65 + i))
-
-},
-
-{
-
-label: "Even Numbers 2--50",
-
-instructions: "Click the even numbers in order from <b>2</b> to
-<b>50</b> as quickly as possible.",
-
-sequence: () => Array.from({length: 25}, (_, i) => ((i + 1) *
-2).toString())
-
-},
-
-{
-
-label: "Odd Numbers 1--49",
-
-instructions: "Click the odd numbers in order from <b>1</b> to
-<b>49</b> as quickly as possible.",
-
-sequence: () => Array.from({length: 25}, (_, i) => (i * 2 +
-1).toString())
-
-},
-
-{
-
-label: "Reverse Numbers 25--1",
-
-instructions: "Click the numbers in descending order from <b>25</b>
-to <b>1</b> as quickly as possible.",
-
-sequence: () => Array.from({length: 25}, (_, i) => (25 -
-i).toString())
-
-},
-
-{
-
-label: "Reverse Letters Y--A",
-
-instructions: "Click the letters in reverse alphabetical order from
-<b>Y</b> to <b>A</b> as quickly as possible.",
-
-sequence: () => Array.from({length: 25}, (_, i) =>
-String.fromCharCode(89 - i))
-
-},
-
-{
-
-label: "Roman Numerals I--XXV",
-
-instructions: "Click the Roman numerals in order from <b>I</b> to
-<b>XXV</b> as quickly as possible.",
-
-sequence: () =>
-["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII","XXIII","XXIV","XXV"]
-
-},
-
-{
-
-label: "Prime Numbers (first 25)",
-
-instructions: "Click the prime numbers in order from <b>2</b> to
-<b>97</b> as quickly as possible.",
-
-sequence: () =>
-["2","3","5","7","11","13","17","19","23","29","31","37","41","43","47","53","59","61","67","71","73","79","83","89","97"]
-
-},
-
-{
-
-label: "Random Symbols",
-
-instructions: "Click the symbols in the order shown in the instructions
-as quickly as possible.",
-
-sequence: () =>
-["!","@","#","$","%","^","&","*","(",")","-","+","=","?","/","<",">","~","`","|","{","}","[","]","\\"]
-
-}
-
-];
-
-// --- STATE ---
-
-const TOTAL_PLAYTIME = 5 * 60 * 1000; // 10 minutes in ms
-
-let currentTrail = 0;
-
-let started = false, startTime, timerInterval;
-
-let totalStartTime, totalTimerInterval;
-
-let timeUp = false;
-
-let sequence = [];
-
-let next = 0;
-
-// --- UTILS ---
-
-function shuffle(arr) {
-
-for (let i = arr.length - 1; i > 0; i--) {
-
-const j = Math.floor(Math.random() * (i + 1));
-
-[arr[i], arr[j]] = [arr[j], arr[i]];
-
-}
-
-return arr;
-
-}
-
-function msToMinSec(ms) {
-
-let sec = Math.max(0, Math.ceil(ms / 1000));
-
-let min = Math.floor(sec / 60);
-
-let rem = sec % 60;
-
-return `${min}:${rem.toString().padStart(2, '0')}`;
-
-}
-
-// --- TRAIL FLOW ---
-
-function startNextTrail() {
-
-if (currentTrail >= trailTypes.length) {
-
-endAll();
-
-return;
-
-}
-
-document.getElementById('instructions').innerHTML = `
-
-<b>Trail ${currentTrail+1} of ${trailTypes.length}:
-${trailTypes[currentTrail].label}</b><br>
-
-${trailTypes[currentTrail].instructions}<br>
-
-<button class="start-btn" onclick="startTrail()">Start This
-Trail</button>
-
-`;
-
-document.getElementById('grid').innerHTML = '';
-
-document.getElementById('timer').textContent = 'Round Time: 0.00 s';
-
-document.getElementById('result').textContent = '';
-
-}
-
-function startTrail() {
-
-if (startTimestamp === null) {
-
-startTimestamp = Date.now();
-
-SyncMarkers.send("trail_making_start");
-    console.log("Trail Making Task Start UNIX Timestamp:",
-startTimestamp);
-
-totalStartTime = startTimestamp;
-
-totalTimerInterval = setInterval(updateTotalTimer, 250);
-
-updateTotalTimer();
-
-}
-
-document.getElementById('instructions').innerHTML = `
-
-<b>Trail ${currentTrail+1} of ${trailTypes.length}:
-${trailTypes[currentTrail].label}</b><br>
-
-${trailTypes[currentTrail].instructions}
-
-`;
-
-createGrid();
-
-}
-
-function createGrid() {
-
-if (timeUp) return;
-
-const grid = document.getElementById('grid');
-
-grid.innerHTML = '';
-
-document.getElementById('result').textContent = '';
-
-document.getElementById('timer').textContent = 'Round Time: 0.00 s';
-
-started = false;
-
-sequence = trailTypes[currentTrail].sequence();
-
-let shuffled = shuffle(sequence.slice());
-
-next = 0;
-
-shuffled.forEach(val => {
-
-const btn = document.createElement('button');
-
-btn.className = 'circle-btn';
-
-btn.textContent = val;
-
-btn.dataset.val = val;
-
-btn.addEventListener('click', function() {
-
-if (btn.textContent === sequence[next]) {
-
-btn.classList.add('correct');
-
-btn.disabled = true;
-
-if (!started) {
-
-started = true;
-
-startTime = Date.now();
-
-timerInterval = setInterval(updateTimer, 10);
-
-}
-
-next++;
-
-if (next >= sequence.length) endTask();
-
-}
-
-});
-
-grid.appendChild(btn);
-
-});
-
-}
-
-function updateTimer() {
-
-if (started) {
-
-let t = (Date.now() - startTime)/1000;
-
-document.getElementById('timer').textContent = `Round Time:
-${t.toFixed(2)} s`;
-
-}
-
-}
-
-function updateTotalTimer() {
-
-let elapsed = Date.now() - totalStartTime;
-
-let remaining = TOTAL_PLAYTIME - elapsed;
-
-document.getElementById('total-timer').textContent = `Total Time
-Left: ${msToMinSec(remaining)}`;
-
-if (remaining <= 0 && !timeUp) {
-
-endAll();
-
-}
-
-}
-
-function endTask() {
-
-clearInterval(timerInterval);
-
-let totalTime = ((Date.now() - startTime)/1000);
-
-document.getElementById('result').textContent = `Finished! Total
-time: ${totalTime.toFixed(2)} seconds.`;
-
-allTrailData.push({
-
-trailLabel: trailTypes[currentTrail].label,
-
-completionTimeSeconds: totalTime
-
-});
-
-showHistory();
-
-document.querySelectorAll('.circle-btn:not(.correct)').forEach(btn =>
-btn.disabled = true);
-
-setTimeout(() => {
-
-currentTrail++;
-
-startNextTrail();
-
-}, 1500);
-
-}
-
-function showHistory() {
-
-let html = `<b>Completed Trails:</b><ul>`;
-
-allTrailData.forEach(trail => {
-
-html += `<li>${trail.trailLabel}: <span
-style="color:green">${trail.completionTimeSeconds.toFixed(2)}
-s</span></li>`;
-
-});
-
-html += `</ul>`;
-
-document.getElementById('history').innerHTML = html;
-
-}
-
-function endAll() {
-
-timeUp = true;
-
-clearInterval(totalTimerInterval);
-
-document.getElementById('grid').innerHTML = '';
-
-document.getElementById('result').textContent = '';
-
-let summary = `<div id="end-message">Task Complete! The next task
-will begin shortly.</div>`;
-
-document.getElementById('end-message').innerHTML = summary;
-
-document.getElementById('total-timer').textContent = 'Total Time
-Left: 0:00';
-
-endTimestamp = Date.now();
-
-SyncMarkers.send("trail_making_end");
+            
+            const taskData = { startTimestamp, endTimestamp };
+            try { parent.postMessage({type:'taskComplete', task:3, data: taskData }, '*'); } catch(e) {}
+          }
+        }, 1000);
+      }
+
+      startBtn.addEventListener('click', startTask);
+    </script>
+  </body>
+  </html>
+  </template>
+
+  <template id="task4-html">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Trail Making Task – 10 Trail Types</title>
+    <style>
+      body { font-family: Arial, sans-serif; text-align: center; }
+      #instructions { margin: 20px; font-size: 1.1rem; }
+      #timer, #total-timer { font-size: 24px; margin: 10px; }
+      #result { font-size: 20px; color: green; margin: 20px; }
+      #grid {
+        display: grid;
+        grid-template-columns: repeat(5, 60px);
+        grid-gap: 18px;
+        justify-content: center;
+        margin: 30px auto;
+        width: max-content;
+      }
+      .circle-btn {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: 2px solid #333;
+        font-size: 20px;
+        background: #fff;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+      }
+      .circle-btn.correct {
+        background: #aaf;
+        color: #333;
+        border-color: #77f;
+        cursor: default;
+      }
+      .circle-btn:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+      #history {
+        margin-top: 24px;
+        font-size: 18px;
+        color: #444;
+      }
+      #history ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+        text-align: left;
+      }
+      #history li {
+        margin-bottom: 4px;
+      }
+      #end-message {
+        color: #b00;
+        font-size: 22px;
+        margin-top: 30px;
+        font-weight: bold;
+      }
+      button.start-btn {
+        font-size: 1.1rem;
+        padding: 8px 28px;
+        margin-top: 18px;
+        background: #77f;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      button.start-btn:hover {
+        background: #55c;
+      }
+    </style>
+  </head>
+  <body>
+  
+    <div id="mainInstructions">
+        <h2>Trail Making Task Instructions</h2>
+        <p style="max-width: 600px; margin: 20px auto; text-align: left; line-height: 1.6;">
+            You are about to begin the <b>Trail Making Task</b>.
+            <br><br>
+            You will be presented with a series of 10 different "trails."
+            <br><br>
+            For each trail, you will see 25 circles on the screen. Your task is to click them in a specific order as fast as you can.
+            <br><br>
+            The instructions for each trail (e.g., "Click numbers 1-25" or "Click 1-A-2-B...") will be shown before it begins.
+            <br><br>
+            Click <b>Start</b> when you are ready to see the instructions for the first trail.
+        </p>
+        <button id="startMainTaskBtn" style="font-size: 1.1rem; padding: 8px 28px; cursor: pointer; background: #77f; color: #fff; border: none; border-radius: 8px;">Start</button>
+    </div>
+
+    <div id="taskContainer" style="display:none;">
+      <h1>Trail Making Task</h1>
+      <div id="instructions"></div>
+      <div id="total-timer">Total Time Left: 05:00</div>
+      <div id="timer">Round Time: 0.00 s</div>
+      <div id="grid"></div>
+      <div id="result"></div>
+      <div id="history"></div>
+      <div id="end-message"></div>
+    </div>
+
+    <script>
+      // --- TIMESTAMP & DATA LOGIC ---
+      let startTimestamp = null;
+      let endTimestamp = null;
+      let allTrailData = [];
+
+      // --- TRAIL DEFINITIONS ---
+      const trailTypes = [
+        {
+          label: "Numbers 1–25",
+          instructions: "Click the buttons in ascending order from <b>1</b> to <b>25</b>.",
+          sequence: () => Array.from({length: 25}, (_, i) => (i + 1).toString())
+        },
+        {
+          label: "Alternating Numbers & Letters",
+          instructions: "Click the buttons in alternating order: <b>1, A, 2, B, 3, C, ...</b> as quickly as possible.",
+          sequence: () => {
+            let arr = [];
+            for (let i = 1; i <= 13; i++) {
+              arr.push(i.toString());
+              if (i <= 13) arr.push(String.fromCharCode(64 + i)); // A–M
+            }
+            return arr.slice(0, 25);
+          }
+        },
+        {
+          label: "Letters A–Y",
+          instructions: "Click the buttons in alphabetical order from <b>A</b> to <b>Y</b> as quickly as possible.",
+          sequence: () => Array.from({length: 25}, (_, i) => String.fromCharCode(65 + i))
+        },
+        {
+          label: "Even Numbers 2–50",
+          instructions: "Click the even numbers in order from <b>2</b> to <b>50</b> as quickly as possible.",
+          sequence: () => Array.from({length: 25}, (_, i) => ((i + 1) * 2).toString())
+        },
+        {
+          label: "Odd Numbers 1–49",
+          instructions: "Click the odd numbers in order from <b>1</b> to <b>49</b> as quickly as possible.",
+          sequence: () => Array.from({length: 25}, (_, i) => (i * 2 + 1).toString())
+        },
+        {
+          label: "Reverse Numbers 25–1",
+          instructions: "Click the numbers in descending order from <b>25</b> to <b>1</b> as quickly as possible.",
+          sequence: () => Array.from({length: 25}, (_, i) => (25 - i).toString())
+        },
+        {
+          label: "Reverse Letters Y–A",
+          instructions: "Click the letters in reverse alphabetical order from <b>Y</b> to <b>A</b> as quickly as possible.",
+          sequence: () => Array.from({length: 25}, (_, i) => String.fromCharCode(89 - i))
+        },
+        {
+          label: "Roman Numerals I–XXV",
+          instructions: "Click the Roman numerals in order from <b>I</b> to <b>XXV</b> as quickly as possible.",
+          sequence: () => ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII","XXIII","XXIV","XXV"]
+        },
+        {
+          label: "Prime Numbers (first 25)",
+          instructions: "Click the prime numbers in order from <b>2</b> to <b>97</b> as quickly as possible.",
+          sequence: () => ["2","3","5","7","11","13","17","19","23","29","31","37","41","43","47","53","59","61","67","71","73","79","83","89","97"]
+        },
+        {
+          label: "Random Symbols",
+          instructions: "Click the symbols in the order shown in the instructions as quickly as possible.",
+          sequence: () => ["!","@","#","$","%","^","&","*","(",")","-","+","=","?","/","<",">","~","`","|","{","}","[","]","\\"]
+        }
+      ];
+
+      // --- STATE ---
+      const TOTAL_PLAYTIME = 5 * 60 * 1000; // 10 minutes in ms
+      let currentTrail = 0;
+      let started = false, startTime, timerInterval;
+      let totalStartTime, totalTimerInterval;
+      let timeUp = false;
+      let sequence = [];
+      let next = 0;
+
+      // --- UTILS ---
+      function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+      function msToMinSec(ms) {
+        let sec = Math.max(0, Math.ceil(ms / 1000));
+        let min = Math.floor(sec / 60);
+        let rem = sec % 60;
+        return `${min}:${rem.toString().padStart(2, '0')}`;
+      }
+
+      // --- TRAIL FLOW ---
+      function startNextTrail() {
+        if (currentTrail >= trailTypes.length) {
+          endAll();
+          return;
+        }
+        document.getElementById('instructions').innerHTML = `
+          <b>Trail ${currentTrail+1} of ${trailTypes.length}: ${trailTypes[currentTrail].label}</b><br>
+          ${trailTypes[currentTrail].instructions}<br>
+          <button class="start-btn" onclick="startTrail()">Start This Trail</button>
+        `;
+        document.getElementById('grid').innerHTML = '';
+        document.getElementById('timer').textContent = 'Round Time: 0.00 s';
+        document.getElementById('result').textContent = '';
+      }
+
+      function startTrail() {
+        if (startTimestamp === null) {
+            startTimestamp = Date.now();
+            SyncMarkers.send("trail_making_start");
+    console.log("Trail Making Task Start UNIX Timestamp:", startTimestamp);
+            totalStartTime = startTimestamp;
+            totalTimerInterval = setInterval(updateTotalTimer, 250);
+            updateTotalTimer();
+        }
+        document.getElementById('instructions').innerHTML = `
+          <b>Trail ${currentTrail+1} of ${trailTypes.length}: ${trailTypes[currentTrail].label}</b><br>
+          ${trailTypes[currentTrail].instructions}
+        `;
+        createGrid();
+      }
+
+      function createGrid() {
+        if (timeUp) return;
+        const grid = document.getElementById('grid');
+        grid.innerHTML = '';
+        document.getElementById('result').textContent = '';
+        document.getElementById('timer').textContent = 'Round Time: 0.00 s';
+        started = false;
+        sequence = trailTypes[currentTrail].sequence();
+        let shuffled = shuffle(sequence.slice());
+        next = 0;
+        shuffled.forEach(val => {
+          const btn = document.createElement('button');
+          btn.className = 'circle-btn';
+          btn.textContent = val;
+          btn.dataset.val = val;
+          btn.addEventListener('click', function() {
+            if (btn.textContent === sequence[next]) {
+              btn.classList.add('correct');
+              btn.disabled = true;
+              if (!started) {
+                started = true;
+                startTime = Date.now();
+                timerInterval = setInterval(updateTimer, 10);
+              }
+              next++;
+              if (next >= sequence.length) endTask();
+            }
+          });
+          grid.appendChild(btn);
+        });
+      }
+
+      function updateTimer() {
+        if (started) {
+          let t = (Date.now() - startTime)/1000;
+          document.getElementById('timer').textContent = `Round Time: ${t.toFixed(2)} s`;
+        }
+      }
+
+      function updateTotalTimer() {
+        let elapsed = Date.now() - totalStartTime;
+        let remaining = TOTAL_PLAYTIME - elapsed;
+        document.getElementById('total-timer').textContent = `Total Time Left: ${msToMinSec(remaining)}`;
+        if (remaining <= 0 && !timeUp) {
+          endAll();
+        }
+      }
+
+      function endTask() {
+        clearInterval(timerInterval);
+        let totalTime = ((Date.now() - startTime)/1000);
+        document.getElementById('result').textContent = `Finished! Total time: ${totalTime.toFixed(2)} seconds.`;
+        
+        allTrailData.push({
+            trailLabel: trailTypes[currentTrail].label,
+            completionTimeSeconds: totalTime
+        });
+
+        showHistory();
+        document.querySelectorAll('.circle-btn:not(.correct)').forEach(btn => btn.disabled = true);
+        setTimeout(() => {
+          currentTrail++;
+          startNextTrail();
+        }, 1500);
+      }
+
+      function showHistory() {
+        let html = `<b>Completed Trails:</b><ul>`;
+        allTrailData.forEach(trail => {
+            html += `<li>${trail.trailLabel}: <span style="color:green">${trail.completionTimeSeconds.toFixed(2)} s</span></li>`;
+        });
+        html += `</ul>`;
+        document.getElementById('history').innerHTML = html;
+      }
+
+      function endAll() {
+        timeUp = true;
+        clearInterval(totalTimerInterval);
+        document.getElementById('grid').innerHTML = '';
+        document.getElementById('result').textContent = '';
+        let summary = `<div id="end-message">Task Complete! The next task will begin shortly.</div>`;
+        document.getElementById('end-message').innerHTML = summary;
+        document.getElementById('total-timer').textContent = 'Total Time Left: 0:00';
+
+        endTimestamp = Date.now();
+        SyncMarkers.send("trail_making_end");
     console.log("Trail Making Task End UNIX Timestamp:", endTimestamp);
-
-const taskData = { startTimestamp, endTimestamp, trails: allTrailData };
-
-try { parent.postMessage({type:'taskComplete', task:4, data: taskData
-}, '*'); } catch(e) {}
-
-}
-
-// --- INIT ---
-
-// startNextTrail(); // <-- CHANGE 3b: Removed old init
-
-// CHANGE 3b: Added new start logic
-
-document.getElementById('startMainTaskBtn').onclick = function() {
-
-document.getElementById('mainInstructions').style.display = 'none';
-
-document.getElementById('taskContainer').style.display = 'block';
-
-startNextTrail(); // This is the original starting function
-
-};
-
-window.startTrail = startTrail;
-
-</script>
-
-</body>
-
-</html>
-
-</template>
-
-<template id="task5-html">
-
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>Casino Slot Machine Experiment</title>
-
-<meta name="viewport" content="width=device-width,
-initial-scale=1.0">
-
-<style>
-
-body { font-family: 'Segoe UI', Arial, sans-serif; background:
-radial-gradient(circle at 50% 20%, #2d1a09 0%, #1a0d04 100%); color:
-#eee; margin: 0; }
-
-.container { max-width: 1200px; margin: 0 auto; padding: 24px; }
-
-.hidden { display: none !important; }
-
-.center { text-align: center; }
-
-.slot-machine-layout { display: flex; flex-direction: row; gap: 32px;
-align-items: flex-start; }
-
-.slot-machine { background: linear-gradient(135deg, #3b1e00 60%, #a67c52
-100%); border-radius: 24px; padding: 32px 24px 24px 24px; box-shadow: 0
-8px 32px #000a; margin-bottom: 24px; flex: 3; position: relative;}
-
-.slot-machine::before {
-
-content: ""; position: absolute; left: 0; top: 0; width: 100%; height:
-100%;
-
-background: repeating-linear-gradient(135deg, rgba(255,215,0,0.15),
-rgba(255,215,0,0.05) 20px, transparent 40px, transparent 60px);
-
-border-radius: 24px; pointer-events: none;
-
-}
-
-.reels { display: flex; justify-content: center; gap: 24px;
-margin-bottom: 20px; }
-
-.reel {
-
-width: 140px; height: 140px; background: radial-gradient(circle, #fffbe6
-60%, #f1c40f 100%);
-
-border: 6px solid #bfa145; border-radius: 16px; display: flex;
-align-items: center; justify-content: center;
-
-font-size: 5rem; box-shadow: 0 2px 12px #000a, 0 0 24px #fff70066 inset;
-
-transition: box-shadow 0.2s;
-
-}
-
-.chips { display: flex; justify-content: center; gap: 18px;
-margin-bottom: 18px; }
-
-.chip {
-
-width: 56px; height: 56px; border-radius: 50%; background:
-radial-gradient(circle, #ffe066 60%, #e1b700 100%);
-
-border: 4px solid #fff; display: flex; align-items: center;
-justify-content: center; font-weight: bold; font-size: 1.3rem; cursor:
-pointer; transition: border 0.2s, box-shadow 0.2s;
-
-box-shadow: 0 2px 10px #000a;
-
-position: relative;
-
-margin: 0 2px;
-
-color: #3b1e00; /* <<< CHANGE 1b: Dark color for chip text */
-
-}
-
-.chip.selected { border: 4px solid #ff3; box-shadow: 0 0 16px #fff700; }
-
-.shape-chip svg { width: 40px; height: 40px; }
-
-.spin-btn {
-
-background: linear-gradient(90deg, #ff2d2d 60%, #ffb300 100%);
-
-color: #fff; padding: 16px 40px; border: none; border-radius: 12px;
-font-size: 1.5rem; cursor: pointer; margin-bottom: 14px;
-
-box-shadow: 0 2px 8px #000a, 0 0 16px #fff70055;
-
-font-family: 'Segoe UI', Arial, sans-serif;
-
-font-weight: bold;
-
-letter-spacing: 1px;
-
-transition: filter 0.2s;
-
-}
-
-.spin-btn:disabled { background: #888; filter: grayscale(0.5); }
-
-.total-winnings, .wallet {
-
-background: #222; color: #ffd700; font-size: 1.3rem; padding: 8px 32px;
-border-radius: 10px; margin: 0 auto 16px auto; display: inline-block;
-font-weight: bold; box-shadow: 0 2px 8px #000a;
-
-text-shadow: 0 0 6px #fff700;
-
-}
-
-.wallet { color: #00ffae; margin-left: 16px; }
-
-.message { font-size: 1.25rem; margin: 14px 0; min-height: 40px;}
-
-.nogain { color: #aaa; }
-
-.leaderboard { background: #1a1203; border-radius: 16px; padding: 18px
-16px; max-width: 260px; margin: 0; box-shadow: 0 2px 12px #000a; flex:
-1;}
-
-.leaderboard h3 { margin: 0 0 10px 0; color: #ffd700; text-align:
-center; letter-spacing: 1px; }
-
-.leaderboard-list { list-style: none; padding: 0; margin: 0; }
-
-.leaderboard-list li { padding: 6px 0; font-size: 1.1rem; }
-
-.player { color: #fff700; font-weight: bold; background: #3b2e00;
-border-radius: 6px; padding: 2px 8px;}
-
-.reels-bg { background: repeating-linear-gradient(135deg, #ffd70022 0
-8px, #fff0 8px 16px); border-radius: 20px;
-
-padding: 10px; margin-bottom: 10px; position: relative;
-
-}
-
-.thumbs-down { position: absolute; left: 50%; top: 50%; transform:
-translate(-50%,-50%); font-size: 4rem; color: #ff2d2d; z-index: 20; }
-
-.thumbs-down.hidden { display: none !important; }
-
-.fade-screen {
-
-position: absolute;
-
-left: 0; top: 0; width: 100%; height: 100%;
-
-background: #000a;
-
-z-index: 100;
-
-pointer-events: none;
-
-opacity: 0;
-
-transition: opacity 0.7s;
-
-}
-
-.fade-screen.active { opacity: 1; }
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-<div class="center" id="instructions">
-
-<h2>Instructions</h2>
-
-<ul style="text-align:left; max-width:480px; margin:0 auto 24px auto;
-font-size:1.15rem;">
-
-<li>You will play <b>50 rounds</b>. In each round, place your bet
-using casino chips, and choose a shape to bet on.</li>
-
-<li><b>Higher the bet, higher the risk and potential
-reward.</b></li>
-
-<li>Try to climb the leaderboard by winning more!</li>
-
-<li>Press the <b>SPIN</b> button to play each round.</li>
-
-<li>You start with <b>$2000</b> in your wallet. If you run out,
-you can't play further.</li>
-
-<li>Good luck!</li>
-
-</ul>
-
-<button class="spin-btn"
-onclick="startGameFromInstructions()">Start Game</button>
-
-</div>
-
-<div class="slot-machine-layout hidden" id="gameLayout">
-
-<div id="game" class="slot-machine" style="position:relative;">
-
-<div class="center">
-
-<h2>Slot Machine Game</h2>
-
-<div id="trialInfo"></div>
-
-</div>
-
-<div>
-
-<span class="total-winnings" id="totalWinnings">Total Winnings:
-$0</span>
-
-<span class="wallet" id="walletDisplay">Wallet: $2000</span>
-
-</div>
-
-<div class="reels-bg" style="position:relative;">
-
-<div class="reels" id="reels"></div>
-
-<div class="thumbs-down hidden" id="thumbsDown"></div>
-
-<div class="fade-screen" id="fadeScreen"></div>
-
-</div>
-
-<div class="chips" id="chips">
-
-<div class="chip" data-value="1">$1</div>
-
-<div class="chip" data-value="5">$5</div>
-
-<div class="chip" data-value="10">$10</div>
-
-<div class="chip" data-value="20">$20</div>
-
-</div>
-
-<div class="chips" id="shapeChips" style="margin-bottom:18px;">
-
-<div class="chip shape-chip" data-shape="sphere" title="Bet on
-Sphere"></div>
-
-<div class="chip shape-chip" data-shape="cube" title="Bet on
-Cube"></div>
-
-<div class="chip shape-chip" data-shape="pyramid" title="Bet on
-Pyramid"></div>
-
-<div class="chip shape-chip" data-shape="cylinder" title="Bet on
-Cylinder"></div>
-
-</div>
-
-<div class="center" id="gameMessage"></div>
-
-<div class="center" style="margin-top:10px;">
-
-<button class="spin-btn" id="spinBtn"
-onclick="spin()">SPIN</button>
-
-</div>
-
-<audio id="lossSound"
-src="https://orangefreesounds.com/wp-content/uploads/2023/10/Loss-sound-effect.mp3"></audio>
-
-</div>
-
-<div class="leaderboard" id="leaderboard">
-
-<h3>Leaderboard</h3>
-
-<ol class="leaderboard-list" id="leaderboardList"></ol>
-
-</div>
-
-</div>
-
-<div class="center hidden" id="thankYou">
-
-<h2>Task Complete!</h2>
-
-<p>The next task will begin shortly.</p>
-
-</div>
-
-</div>
-
-<script>
-
-const shapeSVGs = {
-
-'sphere': `<svg width="80" height="80" viewBox="0 0 80
-80"><defs><radialGradient id="g1" cx="50%" cy="40%"
-r="50%"><stop offset="0%" stop-color="#fff"/><stop
-offset="100%"
-stop-color="#a3f"/></radialGradient></defs><ellipse cx="40"
-cy="40" rx="32" ry="32" fill="url(#g1)" stroke="#5c2a7c"
-stroke-width="4"/></svg>`,
-
-'cube': `<svg width="80" height="80" viewBox="0 0 80
-80"><defs><linearGradient id="g2" x1="0" y1="0" x2="1"
-y2="1"><stop offset="0%" stop-color="#fff"/><stop
-offset="100%" stop-color="#3a6"/></linearGradient></defs><rect
-x="16" y="16" width="48" height="48" rx="8" fill="url(#g2)"
-stroke="#2a7c5c" stroke-width="4"/></svg>`,
-
-'pyramid': `<svg width="80" height="80" viewBox="0 0 80
-80"><defs><linearGradient id="g3" x1="0" y1="0" x2="1"
-y2="1"><stop offset="0%" stop-color="#fff"/><stop
-offset="100%"
-stop-color="#a3f"/></linearGradient></defs><polygon
-points="40,12 68,68 12,68" fill="url(#g3)" stroke="#5c2a7c"
-stroke-width="4"/></svg>`,
-
-'cylinder': `<svg width="80" height="80" viewBox="0 0 80
-80"><defs><linearGradient id="g4" x1="0" y1="0" x2="0"
-y2="1"><stop offset="0%" stop-color="#fff"/><stop
-offset="100%"
-stop-color="#3a6"/></linearGradient></defs><ellipse cx="40"
-cy="20" rx="24" ry="10" fill="#fff" opacity="0.5"/><rect
-x="16" y="20" width="48" height="40" rx="24" fill="url(#g4)"
-stroke="#2a7c5c" stroke-width="4"/><ellipse cx="40" cy="60"
-rx="24" ry="10" fill="#3a6" stroke="#2a7c5c"
-stroke-width="4"/></svg>`
-
-};
-
-const allSymbols = ['sphere', 'cube', 'pyramid', 'cylinder'];
-
-const noGainCombos = [
-
-['cube', 'cube', 'cylinder'],
-
-['cube', 'cylinder', 'cube'],
-
-['cylinder', 'cube', 'cube'],
-
-['cylinder', 'cylinder', 'cube'],
-
-['cylinder', 'cube', 'cylinder'],
-
-['cube', 'cylinder', 'cylinder']
-
-];
-
-const lossSymbols = ['sphere', 'pyramid'];
-
-const TOTAL_TRIALS = 50;
-
-// --- Timestamp & Data Variables ---
-
-let startTimestamp = null;
-
-let endTimestamp = null;
-
-let participantData = { trials: [], totalWinnings: 0 };
-
-let trialNum = 0;
-
-let betAmount = 1;
-
-let betShape = 'sphere';
-
-let leaderboard = [];
-
-let totalWinnings = 0;
-
-let wallet = 2000;
-
-function startGameFromInstructions() {
-
-document.getElementById('instructions').classList.add('hidden');
-
-document.getElementById('gameLayout').classList.remove('hidden');
-
-startGame();
-
-}
-
-function startGame() {
-
-startTimestamp = Date.now();
-
-SyncMarkers.send("counterconditioning_start");
-    console.log("Counterconditioning Task Start UNIX Timestamp:",
-startTimestamp);
-
-trialNum = 0;
-
-totalWinnings = 0;
-
-participantData.trials = [];
-
-participantData.totalWinnings = 0;
-
-wallet = 2000;
-
-leaderboard = Array.from({length: 15}, (_,i) => ({
-
-name: "Player " + (i+1), score: Math.floor(Math.random()*200+50)
-
-}));
-
-leaderboard.unshift({name: "You", score: 0});
-
-document.getElementById('gameLayout').classList.remove('hidden');
-
-updateGameUI();
-
-renderLeaderboard();
-
-document.querySelectorAll('.chip').forEach(chip => {
-
-if (!chip.classList.contains('shape-chip')) {
-
-chip.onclick = function() {
-
-document.querySelectorAll('.chip').forEach(c => { if
-(!c.classList.contains('shape-chip'))
-c.classList.remove('selected'); });
-
-chip.classList.add('selected');
-
-betAmount = parseInt(chip.dataset.value);
-
-if (wallet < betAmount) {
-
-document.getElementById('spinBtn').disabled = true;
-
-document.getElementById('gameMessage').innerHTML = `<span
-class="nogain">Insufficient funds to bet. Game over!</span>`;
-
-} else {
-
-document.getElementById('spinBtn').disabled = false;
-
-document.getElementById('gameMessage').innerHTML = '';
-
-}
-
-}
-
-}
-
-});
-
-renderShapeChips();
-
-}
-
-function renderShapeChips() {
-
-const chips = document.querySelectorAll('.shape-chip');
-
-chips.forEach(chip => {
-
-const shape = chip.dataset.shape;
-
-chip.innerHTML = shapeSVGs[shape];
-
-chip.onclick = function() {
-
-chips.forEach(c => c.classList.remove('selected'));
-
-chip.classList.add('selected');
-
-betShape = shape;
-
-}
-
-});
-
-chips[0].classList.add('selected');
-
-betShape = chips[0].dataset.shape;
-
-}
-
-function updateGameUI() {
-
-document.getElementById('trialInfo').innerHTML = `<b>Trial
-${trialNum+1} of 50</b>`;
-
-renderReels(['sphere','cube','cylinder']);
-
-document.getElementById('gameMessage').innerHTML = '';
-
-document.getElementById('spinBtn').disabled = false;
-
-document.getElementById('totalWinnings').innerText = `Total Winnings:
-$${totalWinnings}`;
-
-document.getElementById('walletDisplay').innerText = `Wallet:
-$${wallet}`;
-
-document.querySelectorAll('.chip').forEach(chip => { if
-(!chip.classList.contains('shape-chip'))
-chip.classList.remove('selected'); });
-
-betAmount = 1;
-
-document.querySelector('.chip[data-value="1"]').classList.add('selected');
-
-if (wallet < betAmount) {
-
-document.getElementById('spinBtn').disabled = true;
-
-document.getElementById('gameMessage').innerHTML = `<span
-class="nogain">Insufficient funds to bet. Game over!</span>`;
-
-}
-
-}
-
-function renderReels(symbols) {
-
-const reelsDiv = document.getElementById('reels');
-
-reelsDiv.innerHTML = '';
-
-symbols.forEach(sym => {
-
-const div = document.createElement('div');
-
-div.className = 'reel';
-
-div.innerHTML = shapeSVGs[sym] || '';
-
-reelsDiv.appendChild(div);
-
-});
-
-}
-
-function renderLeaderboard() {
-
-let player = leaderboard.find(l => l.name === "You");
-
-let losses = participantData.trials.filter(t => t.outcome ===
-'loss').length;
-
-leaderboard = leaderboard.filter(l => l !== player);
-
-let newPos = Math.min(losses, leaderboard.length);
-
-leaderboard.splice(newPos, 0, player);
-
-const list = document.getElementById('leaderboardList');
-
-list.innerHTML = '';
-
-leaderboard.forEach((l,i) => {
-
-const li = document.createElement('li');
-
-li.innerText = l.name + " - $" + l.score;
-
-if (l.name === player.name) li.className = 'player';
-
-list.appendChild(li);
-
-});
-
-}
-
-function showThumbsDown() {
-
-const td = document.getElementById('thumbsDown');
-
-td.innerHTML = '👎';
-
-td.classList.remove('hidden');
-
-setTimeout(()=>{ td.classList.add('hidden'); }, 1000);
-
-}
-
-function fadeScreen() {
-
-const fade = document.getElementById('fadeScreen');
-
-fade.classList.add('active');
-
-setTimeout(() => fade.classList.remove('active'), 900);
-
-}
-
-function playLossSound() {
-
-const snd = document.getElementById('lossSound');
-
-snd.currentTime = 0;
-
-snd.play();
-
-}
-
-function spin() {
-
-if (wallet < betAmount) {
-
-document.getElementById('gameMessage').innerHTML = `<span
-class="nogain">Insufficient funds to bet. Game over!</span>`;
-
-document.getElementById('spinBtn').disabled = true;
-
-return;
-
-}
-
-document.getElementById('spinBtn').disabled = true;
-
-let spinStart = Date.now();
-
-wallet -= betAmount;
-
-document.getElementById('walletDisplay').innerText = `Wallet:
-$${wallet}`;
-
-let anim = setInterval(() => {
-
-renderReels([
-
-allSymbols[Math.floor(Math.random()*allSymbols.length)],
-
-allSymbols[Math.floor(Math.random()*allSymbols.length)],
-
-allSymbols[Math.floor(Math.random()*allSymbols.length)]
-
-]);
-
-}, 70);
-
-setTimeout(() => {
-
-clearInterval(anim);
-
-let outcome = '';
-
-let combo, message = '', shapeWin = false;
-
-if (lossSymbols.includes(betShape)) {
-
-outcome = 'loss';
-
-let possible = [];
-
-for(let a of lossSymbols) for(let b of lossSymbols) for(let c of
-lossSymbols)
-
-// <<< CHANGE 2: Only add combinations that are NOT all the same
-
-if (!(a === b && b === c))
-
-possible.push([a,b,c]);
-
-combo = possible[Math.floor(Math.random()*possible.length)];
-
-totalWinnings -= betAmount;
-
-participantData.totalWinnings = totalWinnings;
-
-message = `<span class="nogain">You lost! <b>👎</b> Better luck
-next time.</span>`;
-
-showThumbsDown();
-
-fadeScreen();
-
-playLossSound();
-
-} else {
-
-outcome = 'nogain';
-
-combo = noGainCombos[Math.floor(Math.random()*noGainCombos.length)];
-
-wallet += betAmount; // Refund
-
-message = `<span class="nogain">No gain, no loss. Your bet is
-returned.</span>`;
-
-}
-
-renderReels(combo);
-
-if (betShape && combo.includes(betShape)) shapeWin = true;
-
-document.getElementById('gameMessage').innerHTML = message;
-
-let spinEnd = Date.now();
-
-participantData.trials.push({
-
-trial: trialNum+1,
-
-bet: betAmount,
-
-betShape: betShape,
-
-shapeWin: shapeWin,
-
-combo: combo.join(','),
-
-outcome: outcome,
-
-loss: outcome === "loss" ? betAmount : 0,
-
-totalWinningsAfterTrial: totalWinnings,
-
-walletAfterTrial: wallet,
-
-spinStartTimestamp: spinStart,
-
-spinEndTimestamp: spinEnd
-
-});
-
-renderLeaderboard();
-
-trialNum++;
-
-if (trialNum < TOTAL_TRIALS && wallet > 0) {
-
-setTimeout(() => {
-
-updateGameUI();
-
-renderLeaderboard();
-
-}, 1600);
-
-} else {
-
-setTimeout(() => {
-
-endTimestamp = Date.now();
-
-SyncMarkers.send("counterconditioning_end");
-    console.log("Counterconditioning Task End UNIX Timestamp:",
-endTimestamp);
-
-document.getElementById('gameLayout').classList.add('hidden');
-
-document.getElementById('thankYou').classList.remove('hidden');
-
-const taskData = { startTimestamp, endTimestamp, ...participantData };
-
-try { parent.postMessage({type:'taskComplete', task:5, data: taskData
-}, '*'); } catch(e) {}
-
-}, 1600);
-
-}
-
-}, 1100);
-
-}
-
-</script>
-
-</body>
-
-</html>
-
-</template>
-
-<template id="task6-html">
-
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>Cold Pressor Test</title>
-
-<style>
-
-body { font-family: Arial, sans-serif; background: #2a3a5c; color: #fff;
-display: flex; flex-direction: column; align-items: center;
-justify-content: center; min-height: 100vh; margin: 0; }
-
-.container { background: #19335c; padding: 2em 3em; border-radius: 16px;
-box-shadow: 0 4px 32px rgba(0,0,0,0.2); text-align: center; }
-
-.timer { font-size: 2em; margin: 1em 0; letter-spacing: 0.1em; color:
-#ff6347; }
-
-button { padding: 0.7em 2.2em; font-size: 1.2em; background: #ff6347;
-color: #19335c; border: none; border-radius: 8px; cursor: pointer;
-margin-top: 1em; font-weight: bold; transition: background 0.2s; }
-
-button:disabled { background: #aaa; color: #666; cursor: default; }
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-<h2>SNS Task: Cold Pressor Test</h2>
-
-<div id="instructions">
-
-<p>
-
-<b>Instructions:</b><br>
-
-Please submerge your <b> right hand</b> in the cold water up to your
-wrist.<br>
-
-Keep it submerged for the entire 2-minute duration.<br>
-
-Press <b>Start</b> to begin the timer.
-
-</p>
-
-</div>
-
-<div class="timer" id="timer">02:00</div>
-
-<button id="startBtn" onclick="startTask()">Start</button>
-
-<div id="doneMsg" style="display:none; margin-top:1em;">
-
-<b>Task complete! You may remove your hand. The next task will begin
-shortly.</b>
-
-</div>
-
-</div>
-
-<script>
-
-let timerDisplay = document.getElementById('timer');
-
-let startBtn = document.getElementById('startBtn');
-
-let doneMsg = document.getElementById('doneMsg');
-
-let interval;
-
-let duration = 2 * 60; // 2 minutes
-
-let timeLeft = duration;
-
-let startTimestamp = null;
-
-let endTimestamp = null;
-
-function updateTimer() {
-
-let min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-
-let sec = String(timeLeft % 60).padStart(2, '0');
-
-timerDisplay.textContent = `${min}:${sec}`;
-
-}
-
-function startTask() {
-
-startBtn.disabled = true;
-
-doneMsg.style.display = 'none';
-
-timeLeft = duration;
-
-updateTimer();
-
-startTimestamp = Date.now();
-
-SyncMarkers.send("cold_pressor_start");
-    console.log("Cold Pressor Task Start UNIX Timestamp:",
-startTimestamp);
-
-interval = setInterval(() => {
-
-timeLeft--;
-
-updateTimer();
-
-if (timeLeft <= 0) {
-
-clearInterval(interval);
-
-endTimestamp = Date.now();
-
-SyncMarkers.send("cold_pressor_end");
+        
+        const taskData = { startTimestamp, endTimestamp, trails: allTrailData };
+        try { parent.postMessage({type:'taskComplete', task:4, data: taskData }, '*'); } catch(e) {}
+      }
+
+      // --- INIT ---
+      // startNextTrail(); // <-- CHANGE 3b: Removed old init
+      
+      // CHANGE 3b: Added new start logic
+      document.getElementById('startMainTaskBtn').onclick = function() {
+        document.getElementById('mainInstructions').style.display = 'none';
+        document.getElementById('taskContainer').style.display = 'block';
+        startNextTrail(); // This is the original starting function
+      };
+      window.startTrail = startTrail;
+    </script>
+  </body>
+  </html>
+  </template>
+
+  <template id="task5-html">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Casino Slot Machine Experiment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body { font-family: 'Segoe UI', Arial, sans-serif; background: radial-gradient(circle at 50% 20%, #2d1a09 0%, #1a0d04 100%); color: #eee; margin: 0; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+      .hidden { display: none !important; }
+      .center { text-align: center; }
+      .slot-machine-layout { display: flex; flex-direction: row; gap: 32px; align-items: flex-start; }
+      .slot-machine { background: linear-gradient(135deg, #3b1e00 60%, #a67c52 100%); border-radius: 24px; padding: 32px 24px 24px 24px; box-shadow: 0 8px 32px #000a; margin-bottom: 24px; flex: 3; position: relative;}
+      .slot-machine::before {
+        content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+        background: repeating-linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,215,0,0.05) 20px, transparent 40px, transparent 60px);
+        border-radius: 24px; pointer-events: none;
+      }
+      .reels { display: flex; justify-content: center; gap: 24px; margin-bottom: 20px; }
+      .reel {
+        width: 140px; height: 140px; background: radial-gradient(circle, #fffbe6 60%, #f1c40f 100%);
+        border: 6px solid #bfa145; border-radius: 16px; display: flex; align-items: center; justify-content: center;
+        font-size: 5rem; box-shadow: 0 2px 12px #000a, 0 0 24px #fff70066 inset;
+        transition: box-shadow 0.2s;
+      }
+      .chips { display: flex; justify-content: center; gap: 18px; margin-bottom: 18px; }
+      .chip {
+        width: 56px; height: 56px; border-radius: 50%; background: radial-gradient(circle, #ffe066 60%, #e1b700 100%);
+        border: 4px solid #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.3rem; cursor: pointer; transition: border 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 10px #000a;
+        position: relative;
+        margin: 0 2px;
+        color: #3b1e00; /* <<< CHANGE 1b: Dark color for chip text */
+      }
+      .chip.selected { border: 4px solid #ff3; box-shadow: 0 0 16px #fff700; }
+      .shape-chip svg { width: 40px; height: 40px; }
+      .spin-btn {
+        background: linear-gradient(90deg, #ff2d2d 60%, #ffb300 100%);
+        color: #fff; padding: 16px 40px; border: none; border-radius: 12px; font-size: 1.5rem; cursor: pointer; margin-bottom: 14px;
+        box-shadow: 0 2px 8px #000a, 0 0 16px #fff70055;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-weight: bold;
+        letter-spacing: 1px;
+        transition: filter 0.2s;
+      }
+      .spin-btn:disabled { background: #888; filter: grayscale(0.5); }
+      .total-winnings, .wallet {
+        background: #222; color: #ffd700; font-size: 1.3rem; padding: 8px 32px; border-radius: 10px; margin: 0 auto 16px auto; display: inline-block; font-weight: bold; box-shadow: 0 2px 8px #000a;
+        text-shadow: 0 0 6px #fff700;
+      }
+      .wallet { color: #00ffae; margin-left: 16px; }
+      .message { font-size: 1.25rem; margin: 14px 0; min-height: 40px;}
+      .nogain { color: #aaa; }
+      .leaderboard { background: #1a1203; border-radius: 16px; padding: 18px 16px; max-width: 260px; margin: 0; box-shadow: 0 2px 12px #000a; flex: 1;}
+      .leaderboard h3 { margin: 0 0 10px 0; color: #ffd700; text-align: center; letter-spacing: 1px; }
+      .leaderboard-list { list-style: none; padding: 0; margin: 0; }
+      .leaderboard-list li { padding: 6px 0; font-size: 1.1rem; }
+      .player { color: #fff700; font-weight: bold; background: #3b2e00; border-radius: 6px; padding: 2px 8px;}
+      .reels-bg { background: repeating-linear-gradient(135deg, #ffd70022 0 8px, #fff0 8px 16px); border-radius: 20px;
+        padding: 10px; margin-bottom: 10px; position: relative;
+      }
+      .thumbs-down { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); font-size: 4rem; color: #ff2d2d; z-index: 20; }
+      .thumbs-down.hidden { display: none !important; }
+      .fade-screen {
+        position: absolute;
+        left: 0; top: 0; width: 100%; height: 100%;
+        background: #000a;
+        z-index: 100;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.7s;
+      }
+      .fade-screen.active { opacity: 1; }
+    </style>
+  </head>
+  <body>
+  <div class="container">
+
+    <div class="center" id="instructions">
+      <h2>Instructions</h2>
+      <ul style="text-align:left; max-width:480px; margin:0 auto 24px auto; font-size:1.15rem;">
+        <li>You will play <b>50 rounds</b>. In each round, place your bet using casino chips, and choose a shape to bet on.</li>
+        <li><b>Higher the bet, higher the risk and potential reward.</b></li>
+        <li>Try to climb the leaderboard by winning more!</li>
+        <li>Press the <b>SPIN</b> button to play each round.</li>
+        <li>You start with <b>$2000</b> in your wallet. If you run out, you can't play further.</li>
+        <li>Good luck!</li>
+      </ul>
+      <button class="spin-btn" onclick="startGameFromInstructions()">Start Game</button>
+    </div>
+
+      <div class="slot-machine-layout hidden" id="gameLayout">
+      <div id="game" class="slot-machine" style="position:relative;">
+        <div class="center">
+          <h2>Slot Machine Game</h2>
+          <div id="trialInfo"></div>
+        </div>
+        <div>
+          <span class="total-winnings" id="totalWinnings">Total Winnings: $0</span>
+          <span class="wallet" id="walletDisplay">Wallet: $2000</span>
+        </div>
+        <div class="reels-bg" style="position:relative;">
+          <div class="reels" id="reels"></div>
+          <div class="thumbs-down hidden" id="thumbsDown"></div>
+          <div class="fade-screen" id="fadeScreen"></div>
+        </div>
+        <div class="chips" id="chips">
+          <div class="chip" data-value="1">$1</div>
+          <div class="chip" data-value="5">$5</div>
+          <div class="chip" data-value="10">$10</div>
+          <div class="chip" data-value="20">$20</div>
+        </div>
+        <div class="chips" id="shapeChips" style="margin-bottom:18px;">
+          <div class="chip shape-chip" data-shape="sphere" title="Bet on Sphere"></div>
+          <div class="chip shape-chip" data-shape="cube" title="Bet on Cube"></div>
+          <div class="chip shape-chip" data-shape="pyramid" title="Bet on Pyramid"></div>
+          <div class="chip shape-chip" data-shape="cylinder" title="Bet on Cylinder"></div>
+        </div>
+        <div class="center" id="gameMessage"></div>
+        <div class="center" style="margin-top:10px;">
+          <button class="spin-btn" id="spinBtn" onclick="spin()">SPIN</button>
+        </div>
+        <audio id="lossSound" src="https://orangefreesounds.com/wp-content/uploads/2023/10/Loss-sound-effect.mp3"></audio>
+      </div>
+      <div class="leaderboard" id="leaderboard">
+        <h3>Leaderboard</h3>
+        <ol class="leaderboard-list" id="leaderboardList"></ol>
+      </div>
+    </div>
+    
+    <div class="center hidden" id="thankYou">
+        <h2>Task Complete!</h2>
+        <p>The next task will begin shortly.</p>
+    </div>
+
+  </div>
+  <script>
+  const shapeSVGs = {
+    'sphere': `<svg width="80" height="80" viewBox="0 0 80 80"><defs><radialGradient id="g1" cx="50%" cy="40%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#a3f"/></radialGradient></defs><ellipse cx="40" cy="40" rx="32" ry="32" fill="url(#g1)" stroke="#5c2a7c" stroke-width="4"/></svg>`,
+    'cube': `<svg width="80" height="80" viewBox="0 0 80 80"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#3a6"/></linearGradient></defs><rect x="16" y="16" width="48" height="48" rx="8" fill="url(#g2)" stroke="#2a7c5c" stroke-width="4"/></svg>`,
+    'pyramid': `<svg width="80" height="80" viewBox="0 0 80 80"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#a3f"/></linearGradient></defs><polygon points="40,12 68,68 12,68" fill="url(#g3)" stroke="#5c2a7c" stroke-width="4"/></svg>`,
+    'cylinder': `<svg width="80" height="80" viewBox="0 0 80 80"><defs><linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#3a6"/></linearGradient></defs><ellipse cx="40" cy="20" rx="24" ry="10" fill="#fff" opacity="0.5"/><rect x="16" y="20" width="48" height="40" rx="24" fill="url(#g4)" stroke="#2a7c5c" stroke-width="4"/><ellipse cx="40" cy="60" rx="24" ry="10" fill="#3a6" stroke="#2a7c5c" stroke-width="4"/></svg>`
+  };
+  const allSymbols = ['sphere', 'cube', 'pyramid', 'cylinder'];
+  const noGainCombos = [
+    ['cube', 'cube', 'cylinder'],
+    ['cube', 'cylinder', 'cube'],
+    ['cylinder', 'cube', 'cube'],
+    ['cylinder', 'cylinder', 'cube'],
+    ['cylinder', 'cube', 'cylinder'],
+    ['cube', 'cylinder', 'cylinder']
+  ];
+  const lossSymbols = ['sphere', 'pyramid'];
+  const TOTAL_TRIALS = 50;
+
+  // --- Timestamp & Data Variables ---
+  let startTimestamp = null;
+  let endTimestamp = null;
+  let participantData = { trials: [], totalWinnings: 0 };
+
+  let trialNum = 0;
+  let betAmount = 1;
+  let betShape = 'sphere';
+  let leaderboard = [];
+  let totalWinnings = 0;
+  let wallet = 2000;
+
+  function startGameFromInstructions() {
+    document.getElementById('instructions').classList.add('hidden');
+    document.getElementById('gameLayout').classList.remove('hidden');
+    startGame();
+  }
+
+  function startGame() {
+    startTimestamp = Date.now();
+    SyncMarkers.send("counterconditioning_start");
+    console.log("Counterconditioning Task Start UNIX Timestamp:", startTimestamp);
+
+    trialNum = 0;
+    totalWinnings = 0;
+    participantData.trials = [];
+    participantData.totalWinnings = 0;
+    wallet = 2000;
+    leaderboard = Array.from({length: 15}, (_,i) => ({
+      name: "Player " + (i+1), score: Math.floor(Math.random()*200+50)
+    }));
+    leaderboard.unshift({name: "You", score: 0});
+    document.getElementById('gameLayout').classList.remove('hidden');
+    updateGameUI();
+    renderLeaderboard();
+    document.querySelectorAll('.chip').forEach(chip => {
+      if (!chip.classList.contains('shape-chip')) {
+        chip.onclick = function() {
+          document.querySelectorAll('.chip').forEach(c => { if (!c.classList.contains('shape-chip')) c.classList.remove('selected'); });
+          chip.classList.add('selected');
+          betAmount = parseInt(chip.dataset.value);
+          if (wallet < betAmount) {
+            document.getElementById('spinBtn').disabled = true;
+            document.getElementById('gameMessage').innerHTML = `<span class="nogain">Insufficient funds to bet. Game over!</span>`;
+          } else {
+            document.getElementById('spinBtn').disabled = false;
+            document.getElementById('gameMessage').innerHTML = '';
+          }
+        }
+      }
+    });
+    renderShapeChips();
+  }
+  function renderShapeChips() {
+    const chips = document.querySelectorAll('.shape-chip');
+    chips.forEach(chip => {
+      const shape = chip.dataset.shape;
+      chip.innerHTML = shapeSVGs[shape];
+      chip.onclick = function() {
+        chips.forEach(c => c.classList.remove('selected'));
+        chip.classList.add('selected');
+        betShape = shape;
+      }
+    });
+    chips[0].classList.add('selected');
+    betShape = chips[0].dataset.shape;
+  }
+  function updateGameUI() {
+    document.getElementById('trialInfo').innerHTML = `<b>Trial ${trialNum+1} of 50</b>`;
+    renderReels(['sphere','cube','cylinder']);
+    document.getElementById('gameMessage').innerHTML = '';
+    document.getElementById('spinBtn').disabled = false;
+    document.getElementById('totalWinnings').innerText = `Total Winnings: $${totalWinnings}`;
+    document.getElementById('walletDisplay').innerText = `Wallet: $${wallet}`;
+    document.querySelectorAll('.chip').forEach(chip => { if (!chip.classList.contains('shape-chip')) chip.classList.remove('selected'); });
+    betAmount = 1;
+    document.querySelector('.chip[data-value="1"]').classList.add('selected');
+    if (wallet < betAmount) {
+      document.getElementById('spinBtn').disabled = true;
+      document.getElementById('gameMessage').innerHTML = `<span class="nogain">Insufficient funds to bet. Game over!</span>`;
+    }
+  }
+  function renderReels(symbols) {
+    const reelsDiv = document.getElementById('reels');
+    reelsDiv.innerHTML = '';
+    symbols.forEach(sym => {
+      const div = document.createElement('div');
+      div.className = 'reel';
+      div.innerHTML = shapeSVGs[sym] || '';
+      reelsDiv.appendChild(div);
+    });
+  }
+  function renderLeaderboard() {
+    let player = leaderboard.find(l => l.name === "You");
+    let losses = participantData.trials.filter(t => t.outcome === 'loss').length;
+    leaderboard = leaderboard.filter(l => l !== player);
+    let newPos = Math.min(losses, leaderboard.length);
+    leaderboard.splice(newPos, 0, player);
+    const list = document.getElementById('leaderboardList');
+    list.innerHTML = '';
+    leaderboard.forEach((l,i) => {
+      const li = document.createElement('li');
+      li.innerText = l.name + " - $" + l.score;
+      if (l.name === player.name) li.className = 'player';
+      list.appendChild(li);
+    });
+  }
+  function showThumbsDown() {
+    const td = document.getElementById('thumbsDown');
+    td.innerHTML = '👎';
+    td.classList.remove('hidden');
+    setTimeout(()=>{ td.classList.add('hidden'); }, 1000);
+  }
+  function fadeScreen() {
+    const fade = document.getElementById('fadeScreen');
+    fade.classList.add('active');
+    setTimeout(() => fade.classList.remove('active'), 900);
+  }
+  function playLossSound() {
+    const snd = document.getElementById('lossSound');
+    snd.currentTime = 0;
+    snd.play();
+  }
+
+  function spin() {
+    if (wallet < betAmount) {
+      document.getElementById('gameMessage').innerHTML = `<span class="nogain">Insufficient funds to bet. Game over!</span>`;
+      document.getElementById('spinBtn').disabled = true;
+      return;
+    }
+    document.getElementById('spinBtn').disabled = true;
+    let spinStart = Date.now();
+    wallet -= betAmount;
+    document.getElementById('walletDisplay').innerText = `Wallet: $${wallet}`;
+
+    let anim = setInterval(() => {
+      renderReels([
+        allSymbols[Math.floor(Math.random()*allSymbols.length)],
+        allSymbols[Math.floor(Math.random()*allSymbols.length)],
+        allSymbols[Math.floor(Math.random()*allSymbols.length)]
+      ]);
+    }, 70);
+
+    setTimeout(() => {
+      clearInterval(anim);
+      let outcome = '';
+      let combo, message = '', shapeWin = false;
+
+      if (lossSymbols.includes(betShape)) {
+          outcome = 'loss';
+          let possible = [];
+          for(let a of lossSymbols) for(let b of lossSymbols) for(let c of lossSymbols)
+            // <<< CHANGE 2: Only add combinations that are NOT all the same
+            if (!(a === b && b === c)) 
+              possible.push([a,b,c]);
+          combo = possible[Math.floor(Math.random()*possible.length)];
+          totalWinnings -= betAmount;
+          participantData.totalWinnings = totalWinnings;
+          message = `<span class="nogain">You lost! <b>👎</b> Better luck next time.</span>`;
+          showThumbsDown();
+          fadeScreen();
+          playLossSound();
+      } else {
+          outcome = 'nogain';
+          combo = noGainCombos[Math.floor(Math.random()*noGainCombos.length)];
+          wallet += betAmount; // Refund
+          message = `<span class="nogain">No gain, no loss. Your bet is returned.</span>`;
+      }
+      renderReels(combo);
+
+      if (betShape && combo.includes(betShape)) shapeWin = true;
+      document.getElementById('gameMessage').innerHTML = message;
+
+      let spinEnd = Date.now();
+      participantData.trials.push({
+        trial: trialNum+1,
+        bet: betAmount,
+        betShape: betShape,
+        shapeWin: shapeWin,
+        combo: combo.join(','),
+        outcome: outcome,
+        loss: outcome === "loss" ? betAmount : 0,
+        totalWinningsAfterTrial: totalWinnings,
+        walletAfterTrial: wallet,
+        spinStartTimestamp: spinStart,
+        spinEndTimestamp: spinEnd
+      });
+
+      renderLeaderboard();
+
+      trialNum++;
+      if (trialNum < TOTAL_TRIALS && wallet > 0) {
+        setTimeout(() => {
+          updateGameUI();
+          renderLeaderboard();
+        }, 1600);
+      } else {
+        setTimeout(() => {
+            endTimestamp = Date.now();
+            SyncMarkers.send("counterconditioning_end");
+    console.log("Counterconditioning Task End UNIX Timestamp:", endTimestamp);
+            
+            document.getElementById('gameLayout').classList.add('hidden');
+            document.getElementById('thankYou').classList.remove('hidden');
+
+            const taskData = { startTimestamp, endTimestamp, ...participantData };
+            try { parent.postMessage({type:'taskComplete', task:5, data: taskData }, '*'); } catch(e) {}
+        }, 1600);
+      }
+    }, 1100);
+  }
+  </script>
+  </body>
+  </html>
+  </template>
+
+  <template id="task6-html">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cold Pressor Test</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #2a3a5c; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+      .container { background: #19335c; padding: 2em 3em; border-radius: 16px; box-shadow: 0 4px 32px rgba(0,0,0,0.2); text-align: center; }
+      .timer { font-size: 2em; margin: 1em 0; letter-spacing: 0.1em; color: #ff6347; }
+      button { padding: 0.7em 2.2em; font-size: 1.2em; background: #ff6347; color: #19335c; border: none; border-radius: 8px; cursor: pointer; margin-top: 1em; font-weight: bold; transition: background 0.2s; }
+      button:disabled { background: #aaa; color: #666; cursor: default; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>SNS Task: Cold Pressor Test</h2>
+      <div id="instructions">
+        <p>
+          <b>Instructions:</b><br>
+          Please submerge your <b> right hand</b> in the cold water up to your wrist.<br>
+          Keep it submerged for the entire 2-minute duration.<br>
+          Press <b>Start</b> to begin the timer.
+        </p>
+      </div>
+      <div class="timer" id="timer">02:00</div>
+      <button id="startBtn" onclick="startTask()">Start</button>
+      <div id="doneMsg" style="display:none; margin-top:1em;">
+        <b>Task complete! You may remove your hand. The next task will begin shortly.</b>
+      </div>
+    </div>
+    <script>
+      let timerDisplay = document.getElementById('timer');
+      let startBtn = document.getElementById('startBtn');
+      let doneMsg = document.getElementById('doneMsg');
+      let interval;
+      let duration = 2 * 60; // 2 minutes
+      let timeLeft = duration;
+      let startTimestamp = null;
+      let endTimestamp = null;
+
+      function updateTimer() {
+        let min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+        let sec = String(timeLeft % 60).padStart(2, '0');
+        timerDisplay.textContent = `${min}:${sec}`;
+      }
+
+      function startTask() {
+        startBtn.disabled = true;
+        doneMsg.style.display = 'none';
+        timeLeft = duration;
+        updateTimer();
+        startTimestamp = Date.now();
+        SyncMarkers.send("cold_pressor_start");
+    console.log("Cold Pressor Task Start UNIX Timestamp:", startTimestamp);
+        interval = setInterval(() => {
+          timeLeft--;
+          updateTimer();
+          if (timeLeft <= 0) {
+            clearInterval(interval);
+            endTimestamp = Date.now();
+            SyncMarkers.send("cold_pressor_end");
     console.log("Cold Pressor Task End UNIX Timestamp:", endTimestamp);
-
-doneMsg.style.display = 'block';
-
-startBtn.disabled = true;
-
-const taskData = { startTimestamp, endTimestamp };
-
-setTimeout(() => {
-
-try { parent.postMessage({type:'taskComplete', task:6, data: taskData
-}, '*'); } catch(e) {}
-
-}, 2000);
-
-}
-
-}, 1000);
-
-}
-
-</script>
-
-</body>
-
-</html>
-
-</template>
-
-<template id="task7-html">
-
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>Experiment Scales</title>
-
-<style>
-
-body { font-family: Arial, sans-serif; background: #222; color: #eee; }
-
-.hidden { display: none; }
-
-.form-block { background: #333; padding: 24px; border-radius: 12px;
-max-width: 600px; margin: 32px auto; }
-
-h2 { color: #0a8; }
-
-.question { margin-bottom: 18px; }
-
-.affective-layout { display: flex; flex-direction: column; align-items:
-center; gap: 20px; }
-
-.affective-instructions { margin-bottom: 16px; text-align: center; }
-
-.affective-slider-block { margin-bottom: 24px; width: 100%;}
-
-.affective-slider-label { display: flex; align-items: center; gap: 12px;
-}
-
-.affective-slider { flex-grow: 1; }
-
-.affective-slider-caption { text-align: center; margin-top: 8px;
-font-style: italic; color: #ccc; }
-
-.symbols-list { display: flex; flex-wrap: wrap; gap: 16px; margin-top:
-8px; justify-content: center;}
-
-.symbol-opt { border: 2px solid #666; border-radius: 8px; padding: 6px;
-background: #222; cursor: pointer; width: 56px; height: 56px; display:
-flex; align-items: center; justify-content: center;}
-
-.symbol-opt.selected { border: 2px solid #0f0; background: #444; }
-
-.probe-pair { display: flex; gap: 32px; justify-content: center; margin:
-18px 0; }
-
-.probe-btn { border: 2px solid #888; background: #222; border-radius:
-8px; padding: 8px; cursor: pointer; width: 56px; height: 56px; }
-
-.probe-btn.selected { border: 2px solid #0f0; }
-
-button { padding: 8px 18px; border-radius: 6px; border: none;
-background: #0a8; color: #fff; font-weight: bold; cursor: pointer; }
-
-</style>
-
-</head>
-
-<body>
-
-<form id="participantForm" class="form-block">
-
-<h2>Participant Information</h2>
-
-<div class="question"><label>Participant ID: <input type="text"
-id="participantId" required></label></div>
-
-<div class="question"><label>Session ID: <input type="text"
-id="sessionId" required></label></div>
-
-<div class="question"><label>Group Number: <input type="number"
-id="groupNumber" required min="1"></label></div>
-
-<button type="submit">Continue</button>
-
-</form>
-
-<form class="form-block hidden" id="affectiveForm">
-
-<h2>Affective Ratings</h2>
-
-<div class="affective-layout">
-
-<div class="affective-instructions">Please rate the following using
-<b>BOTH sliders</b>.</div>
-
-<div class="affective-slider-block">
-
-<div class="affective-slider-label">
-
-<img src="https://img.icons8.com/emoji/48/000000/crying-face.png"
-class="affective-slider-face" alt="Sad">
-
-<input type="range" min="1" max="9" value="5"
-class="affective-slider" id="valenceSlider">
-
-<img
-src="https://em-content.zobj.net/thumbs/240/apple/354/grinning-face_1f600.png"
-alt="Happy Emoji" width="42" height="42">
-
-</div>
-
-<div class="affective-slider-caption">"Rate the level of
-pleasantness or unpleasantness while playing the game by using the
-slider . The scale ranges from extremely unpleasant (represented by the
-frowning figure on the far left) to extremely pleasant (represented by
-the smiling figure on the far right). The middle of the scale represents
-a neutral feeling." </div>
-
-</div>
-
-<div class="affective-slider-block">
-
-<div class="affective-slider-label">
-
-<img src="https://img.icons8.com/emoji/48/000000/sleeping-face.png"
-class="affective-slider-face" alt="Low arousal">
-
-<input type="range" min="1" max="9" value="5"
-class="affective-slider" id="arousalSlider">
-
-<img src="https://img.icons8.com/emoji/48/000000/astonished-face.png"
-class="affective-slider-face" alt="High arousal">
-
-</div>
-
-<div class="affective-slider-caption">"How intense or calm do you
-feel while playing the slot machine game by using the slider . The scale
-ranges from a very low level of arousal (feeling completely calm,
-relaxed, or sleepy) to very high level of arousal (feeling excited,
-agitated, frenzied, or wide awake). "</div>
-
-</div>
-
-<button class="submit-btn" type="submit">Continue</button>
-
-</div>
-
-</form>
-
-<form id="memoryForm" class="form-block hidden">
-
-<h2>Memory & Contingency</h2>
-
-<div class="question">
-
-<div>Mark all shapes present in the game:</div>
-
-<div class="symbols-list" id="memorySymbolsList"></div>
-
-</div>
-
-<div class="question">
-
-<div>Mark all shapes that led you to a loss:</div>
-
-<div class="symbols-list" id="contingencySymbolsList"></div>
-
-</div>
-
-<button type="submit">Continue</button>
-
-</form>
-
-<div id="probeTask" class="form-block hidden">
-
-<h2>Binary Probe Task</h2>
-
-<div id="probePairs"></div>
-
-<button id="finishBtn" onclick="finishExperiment()"
-disabled>Finish</button>
-
-</div>
-
-<div id="thankYou" class="form-block hidden">
-
-<h2>Thank you for participating!</h2>
-
-<div>Your responses have been recorded.</div>
-
-</div>
-
-<script>
-
-const shapeSVGs = {
-
-'sphere': `<svg width="40" height="40" viewBox="0 0 80
-80"><ellipse cx="40" cy="40" rx="32" ry="32" fill="#a3f"
-stroke="#5c2a7c" stroke-width="4"/></svg>`,
-
-'cube': `<svg width="40" height="40" viewBox="0 0 80
-80"><rect x="16" y="16" width="48" height="48" rx="8"
-fill="#3a6" stroke="#2a7c5c" stroke-width="4"/></svg>`,
-
-'pyramid': `<svg width="40" height="40" viewBox="0 0 80
-80"><polygon points="40,12 68,68 12,68" fill="#a3f"
-stroke="#5c2a7c" stroke-width="4"/></svg>`,
-
-'cylinder': `<svg width="40" height="40" viewBox="0 0 80
-80"><ellipse cx="40" cy="20" rx="24" ry="10" fill="#fff"
-opacity="0.5"/><rect x="16" y="20" width="48" height="40"
-rx="24" fill="#3a6" stroke="#2a7c5c"
-stroke-width="4"/><ellipse cx="40" cy="60" rx="24" ry="10"
-fill="#3a6" stroke="#2a7c5c" stroke-width="4"/></svg>`,
-
-'hexPrism': `<svg width="40" height="40" viewBox="0 0 80
-80"><polygon points="20,30 40,12 60,30 60,50 40,68 20,50"
-fill="#fa3" stroke="#fa3" stroke-width="4"/></svg>`,
-
-'starPrism': `<svg width="40" height="40" viewBox="0 0 80
-80"><polygon points="40,12 47,32 68,32 51,46 57,66 40,54 23,66 29,46
-12,32 33,32" fill="#fa3" stroke="#fa3"
-stroke-width="4"/></svg>`,
-
-'capsule': `<svg width="40" height="40" viewBox="0 0 80
-80"><rect x="20" y="24" width="40" height="32" rx="20"
-fill="#fff" stroke="#fa3" stroke-width="4"/><ellipse cx="40"
-cy="24" rx="20" ry="12" fill="#fa3"/><ellipse cx="40"
-cy="56" rx="20" ry="12" fill="#fa3"/></svg>`
-
-};
-
-const allSymbols = ['sphere', 'cube', 'pyramid', 'cylinder'];
-
-const distractorSymbols = ['hexPrism', 'starPrism', 'capsule'];
-
-const rewardSymbols = ['sphere', 'pyramid'];
-
-const winningCombos = [['sphere','sphere','sphere'],
-['pyramid','pyramid','pyramid']];
-
-const nogainCombos = [['cube','cube','cube'],
-['cylinder','cylinder','cylinder']];
-
-let participantData = {
-
-participantId: '', sessionId: '', groupNumber: '',
-
-affective: {}, memory: {}, contingency: {}, probe: [],
-
-timestamps: {}
-
-};
-
-// --- TIMESTAMP LOGIC ---
-
-participantData.timestamps.taskStart = Date.now();
-
-SyncMarkers.send("affective_slider_start");
-    console.log("Questionnaire Task Start UNIX Timestamp:",
-participantData.timestamps.taskStart);
-
-// --- Participant Info ---
-
-document.getElementById('participantForm').onsubmit = function(e) {
-
-e.preventDefault();
-
-participantData.participantId =
-document.getElementById('participantId').value.trim();
-
-participantData.sessionId =
-document.getElementById('sessionId').value.trim();
-
-participantData.groupNumber =
-document.getElementById('groupNumber').value;
-
-document.getElementById('participantForm').classList.add('hidden');
-
-document.getElementById('affectiveForm').classList.remove('hidden');
-
-participantData.timestamps.affectiveStart = Date.now();
-
-};
-
-// --- Affective Scale ---
-
-document.getElementById('affectiveForm').onsubmit = function(e) {
-
-e.preventDefault();
-
-participantData.affective.valence =
-Number(document.getElementById('valenceSlider').value);
-
-participantData.affective.arousal =
-Number(document.getElementById('arousalSlider').value);
-
-participantData.timestamps.affectiveEnd = Date.now();
-
-participantData.affective.reactionTime =
-participantData.timestamps.affectiveEnd -
-participantData.timestamps.affectiveStart;
-
-document.getElementById('affectiveForm').classList.add('hidden');
-
-showMemoryForm();
-
-};
-
-function showMemoryForm() {
+            doneMsg.style.display = 'block';
+            startBtn.disabled = true;
+            
+            const taskData = { startTimestamp, endTimestamp };
+            setTimeout(() => {
+              try { parent.postMessage({type:'taskComplete', task:6, data: taskData }, '*'); } catch(e) {}
+            }, 2000);
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+  </html>
+  </template>
+
+  <template id="task7-html">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Experiment Scales</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #222; color: #eee; }
+      .hidden { display: none; }
+      .form-block { background: #333; padding: 24px; border-radius: 12px; max-width: 600px; margin: 32px auto; }
+      h2 { color: #0a8; }
+      .question { margin-bottom: 18px; }
+      .affective-layout { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+      .affective-instructions { margin-bottom: 16px; text-align: center; }
+      .affective-slider-block { margin-bottom: 24px; width: 100%;}
+      .affective-slider-label { display: flex; align-items: center; gap: 12px; }
+      .affective-slider { flex-grow: 1; }
+      .affective-slider-caption { text-align: center; margin-top: 8px; font-style: italic; color: #ccc; }
+      .symbols-list { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px; justify-content: center;}
+      .symbol-opt { border: 2px solid #666; border-radius: 8px; padding: 6px; background: #222; cursor: pointer; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;}
+      .symbol-opt.selected { border: 2px solid #0f0; background: #444; }
+      .probe-pair { display: flex; gap: 32px; justify-content: center; margin: 18px 0; }
+      .probe-btn { border: 2px solid #888; background: #222; border-radius: 8px; padding: 8px; cursor: pointer; width: 56px; height: 56px; }
+      .probe-btn.selected { border: 2px solid #0f0; }
+      button { padding: 8px 18px; border-radius: 6px; border: none; background: #0a8; color: #fff; font-weight: bold; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <form id="participantForm" class="form-block">
+      <h2>Participant Information</h2>
+      <div class="question"><label>Participant ID: <input type="text" id="participantId" required></label></div>
+      <div class="question"><label>Session ID: <input type="text" id="sessionId" required></label></div>
+      <div class="question"><label>Group Number: <input type="number" id="groupNumber" required min="1"></label></div>
+      <button type="submit">Continue</button>
+    </form>
+
+    <form class="form-block hidden" id="affectiveForm">
+      <h2>Affective Ratings</h2>
+      <div class="affective-layout">
+        <div class="affective-instructions">Please rate the following using <b>BOTH sliders</b>.</div>
+        <div class="affective-slider-block">
+          <div class="affective-slider-label">
+            <img src="https://img.icons8.com/emoji/48/000000/crying-face.png" class="affective-slider-face" alt="Sad">
+            <input type="range" min="1" max="9" value="5" class="affective-slider" id="valenceSlider">
+            <img src="https://em-content.zobj.net/thumbs/240/apple/354/grinning-face_1f600.png" alt="Happy Emoji" width="42" height="42">
+          </div>
+          <div class="affective-slider-caption">“Rate the level of pleasantness or unpleasantness while playing the game by using the slider . The scale ranges from extremely unpleasant (represented by the frowning figure on the far left) to extremely pleasant (represented by the smiling figure on the far right). The middle of the scale represents a neutral feeling." </div>
+        </div>
+        <div class="affective-slider-block">
+          <div class="affective-slider-label">
+            <img src="https://img.icons8.com/emoji/48/000000/sleeping-face.png" class="affective-slider-face" alt="Low arousal">
+            <input type="range" min="1" max="9" value="5" class="affective-slider" id="arousalSlider">
+            <img src="https://img.icons8.com/emoji/48/000000/astonished-face.png" class="affective-slider-face" alt="High arousal">
+          </div>
+          <div class="affective-slider-caption">“How intense or calm do you feel while playing the slot machine game by using the slider . The scale ranges from  a very low level of arousal (feeling completely calm, relaxed, or sleepy) to very high level of arousal (feeling excited, agitated, frenzied, or wide awake). ”</div>
+        </div>
+        <button class="submit-btn" type="submit">Continue</button>
+      </div>
+    </form>
+
+
+    <form id="memoryForm" class="form-block hidden">
+      <h2>Memory & Contingency</h2>
+      <div class="question">
+        <div>Mark all shapes present in the game:</div>
+        <div class="symbols-list" id="memorySymbolsList"></div>
+      </div>
+      <div class="question">
+        <div>Mark all shapes that led you to a loss:</div>
+        <div class="symbols-list" id="contingencySymbolsList"></div>
+      </div>
+      <button type="submit">Continue</button>
+    </form>
+
+    <div id="probeTask" class="form-block hidden">
+      <h2>Binary Probe Task</h2>
+      <div id="probePairs"></div>
+      <button id="finishBtn" onclick="finishExperiment()" disabled>Finish</button>
+    </div>
+
+    <div id="thankYou" class="form-block hidden">
+      <h2>Thank you for participating!</h2>
+      <div>Your responses have been recorded.</div>
+    </div>
+
+  <script>
+  const shapeSVGs = {
+    'sphere': `<svg width="40" height="40" viewBox="0 0 80 80"><ellipse cx="40" cy="40" rx="32" ry="32" fill="#a3f" stroke="#5c2a7c" stroke-width="4"/></svg>`,
+    'cube': `<svg width="40" height="40" viewBox="0 0 80 80"><rect x="16" y="16" width="48" height="48" rx="8" fill="#3a6" stroke="#2a7c5c" stroke-width="4"/></svg>`,
+    'pyramid': `<svg width="40" height="40" viewBox="0 0 80 80"><polygon points="40,12 68,68 12,68" fill="#a3f" stroke="#5c2a7c" stroke-width="4"/></svg>`,
+    'cylinder': `<svg width="40" height="40" viewBox="0 0 80 80"><ellipse cx="40" cy="20" rx="24" ry="10" fill="#fff" opacity="0.5"/><rect x="16" y="20" width="48" height="40" rx="24" fill="#3a6" stroke="#2a7c5c" stroke-width="4"/><ellipse cx="40" cy="60" rx="24" ry="10" fill="#3a6" stroke="#2a7c5c" stroke-width="4"/></svg>`,
+    'hexPrism': `<svg width="40" height="40" viewBox="0 0 80 80"><polygon points="20,30 40,12 60,30 60,50 40,68 20,50" fill="#fa3" stroke="#fa3" stroke-width="4"/></svg>`,
+    'starPrism': `<svg width="40" height="40" viewBox="0 0 80 80"><polygon points="40,12 47,32 68,32 51,46 57,66 40,54 23,66 29,46 12,32 33,32" fill="#fa3" stroke="#fa3" stroke-width="4"/></svg>`,
+    'capsule': `<svg width="40" height="40" viewBox="0 0 80 80"><rect x="20" y="24" width="40" height="32" rx="20" fill="#fff" stroke="#fa3" stroke-width="4"/><ellipse cx="40" cy="24" rx="20" ry="12" fill="#fa3"/><ellipse cx="40" cy="56" rx="20" ry="12" fill="#fa3"/></svg>`
+  };
+  const allSymbols = ['sphere', 'cube', 'pyramid', 'cylinder'];
+  const distractorSymbols = ['hexPrism', 'starPrism', 'capsule'];
+  const rewardSymbols = ['sphere', 'pyramid'];
+  const winningCombos = [['sphere','sphere','sphere'], ['pyramid','pyramid','pyramid']];
+  const nogainCombos = [['cube','cube','cube'], ['cylinder','cylinder','cylinder']];
+
+  let participantData = {
+    participantId: '', sessionId: '', groupNumber: '',
+    affective: {}, memory: {}, contingency: {}, probe: [],
+    timestamps: {}
+  };
+
+  // --- TIMESTAMP LOGIC ---
+  participantData.timestamps.taskStart = Date.now();
+  SyncMarkers.send("affective_slider_start");
+    console.log("Questionnaire Task Start UNIX Timestamp:", participantData.timestamps.taskStart);
+
+  // --- Participant Info ---
+  document.getElementById('participantForm').onsubmit = function(e) {
+    e.preventDefault();
+    participantData.participantId = document.getElementById('participantId').value.trim();
+    participantData.sessionId = document.getElementById('sessionId').value.trim();
+    participantData.groupNumber = document.getElementById('groupNumber').value;
+    document.getElementById('participantForm').classList.add('hidden');
+    document.getElementById('affectiveForm').classList.remove('hidden');
+    participantData.timestamps.affectiveStart = Date.now();
+  };
+
+  // --- Affective Scale ---
+  document.getElementById('affectiveForm').onsubmit = function(e) {
+    e.preventDefault();
+    participantData.affective.valence = Number(document.getElementById('valenceSlider').value);
+    participantData.affective.arousal = Number(document.getElementById('arousalSlider').value);
+    participantData.timestamps.affectiveEnd = Date.now();
+    participantData.affective.reactionTime = participantData.timestamps.affectiveEnd - participantData.timestamps.affectiveStart;
+    document.getElementById('affectiveForm').classList.add('hidden');
+    showMemoryForm();
+  };
+
+  function showMemoryForm() {
     SyncMarkers.send("memory_test_start");
+    document.getElementById('memoryForm').classList.remove('hidden');
+    renderSymbolsList('memorySymbolsList', 'memory');
+    renderSymbolsList('contingencySymbolsList', 'contingency');
+    participantData.timestamps.memoryStart = Date.now();
+  }
 
-document.getElementById('memoryForm').classList.remove('hidden');
+  function renderSymbolsList(divId, type) {
+    const list = document.getElementById(divId);
+    list.innerHTML = '';
+    const shuffledSymbols = [...allSymbols, ...distractorSymbols].sort(() => 0.5 - Math.random());
+    shuffledSymbols.forEach(sym => {
+        const div = document.createElement('div');
+        div.className = 'symbol-opt';
+        div.innerHTML = shapeSVGs[sym];
+        div.dataset.symbol = sym; // Store symbol name
+        div.onclick = function() { div.classList.toggle('selected'); };
+        list.appendChild(div);
+    });
+  }
 
-renderSymbolsList('memorySymbolsList', 'memory');
+  // --- Memory/Contingency Awareness ---
+  document.getElementById('memoryForm').onsubmit = function(e) {
+    e.preventDefault();
+    const memDivs = document.getElementById('memorySymbolsList').querySelectorAll('.symbol-opt.selected');
+    const memResponses = Array.from(memDivs).map(div => div.dataset.symbol);
+    participantData.memory.responses = memResponses;
+    participantData.memory.scores = memResponses.map(sym => allSymbols.includes(sym) ? 1 : 0);
+    
+    const contDivs = document.getElementById('contingencySymbolsList').querySelectorAll('.symbol-opt.selected');
+    const contResponses = Array.from(contDivs).map(div => div.dataset.symbol);
+    participantData.contingency.responses = contResponses;
+    participantData.contingency.scores = contResponses.map(sym => rewardSymbols.includes(sym) ? 1 : 0);
 
-renderSymbolsList('contingencySymbolsList', 'contingency');
+    participantData.timestamps.memoryEnd = Date.now();
+    participantData.memory.reactionTime = participantData.timestamps.memoryEnd - participantData.timestamps.memoryStart;
+    
+    document.getElementById('memoryForm').classList.add('hidden');
+    showProbeTask();
+  };
 
-participantData.timestamps.memoryStart = Date.now();
-
-}
-
-function renderSymbolsList(divId, type) {
-
-const list = document.getElementById(divId);
-
-list.innerHTML = '';
-
-const shuffledSymbols = [...allSymbols,
-...distractorSymbols].sort(() => 0.5 - Math.random());
-
-shuffledSymbols.forEach(sym => {
-
-const div = document.createElement('div');
-
-div.className = 'symbol-opt';
-
-div.innerHTML = shapeSVGs[sym];
-
-div.dataset.symbol = sym; // Store symbol name
-
-div.onclick = function() { div.classList.toggle('selected'); };
-
-list.appendChild(div);
-
-});
-
-}
-
-// --- Memory/Contingency Awareness ---
-
-document.getElementById('memoryForm').onsubmit = function(e) {
-
-e.preventDefault();
-
-const memDivs =
-document.getElementById('memorySymbolsList').querySelectorAll('.symbol-opt.selected');
-
-const memResponses = Array.from(memDivs).map(div =>
-div.dataset.symbol);
-
-participantData.memory.responses = memResponses;
-
-participantData.memory.scores = memResponses.map(sym =>
-allSymbols.includes(sym) ? 1 : 0);
-
-const contDivs =
-document.getElementById('contingencySymbolsList').querySelectorAll('.symbol-opt.selected');
-
-const contResponses = Array.from(contDivs).map(div =>
-div.dataset.symbol);
-
-participantData.contingency.responses = contResponses;
-
-participantData.contingency.scores = contResponses.map(sym =>
-rewardSymbols.includes(sym) ? 1 : 0);
-
-participantData.timestamps.memoryEnd = Date.now();
-
-participantData.memory.reactionTime =
-participantData.timestamps.memoryEnd -
-participantData.timestamps.memoryStart;
-
-document.getElementById('memoryForm').classList.add('hidden');
-
-showProbeTask();
-
-};
-
-// --- Binary Probe Task ---
-
-function showProbeTask() {
+  // --- Binary Probe Task ---
+  function showProbeTask() {
     SyncMarkers.send("memory_test_end");
     SyncMarkers.send("binary_probe_start");
+    document.getElementById('probeTask').classList.remove('hidden');
+    const pairs = [];
+    winningCombos.forEach(win => {
+      nogainCombos.forEach(nogain => {
+        pairs.push([win[0], nogain[0]]);
+      });
+    });
+    let probeIndex = 0;
+    participantData.probe = [];
+    const probeDiv = document.getElementById('probePairs');
+    
+    function renderProbe() {
+      probeDiv.innerHTML = '';
+      if (probeIndex >= pairs.length) {
+        document.getElementById('finishBtn').disabled = false;
+        probeDiv.innerHTML = "All pairs completed. Please click Finish.";
+        return;
+      }
+      let [a, b] = pairs[probeIndex];
+      if (Math.random() > 0.5) [a, b] = [b, a];
+      const question = document.createElement('div');
+      question.style.fontWeight = 'bold';
+      question.style.marginBottom = '12px';
+      question.innerText = "Based on the casino slot machine game ,Which is more pleasant out of these two?";
+      probeDiv.appendChild(question);
 
-document.getElementById('probeTask').classList.remove('hidden');
+      const pairDiv = document.createElement('div');
+      pairDiv.className = 'probe-pair';
+      const btnA = document.createElement('button');
+      btnA.className = 'probe-btn';
+      btnA.innerHTML = shapeSVGs[a];
+      const btnB = document.createElement('button');
+      btnB.className = 'probe-btn';
+      btnB.innerHTML = shapeSVGs[b];
+      let probeStart = Date.now();
+      btnA.onclick = (e) => { e.preventDefault(); recordProbe(a,b,a,probeStart); };
+      btnB.onclick = (e) => { e.preventDefault(); recordProbe(a,b,b,probeStart); };
+      pairDiv.appendChild(btnA);
+      pairDiv.appendChild(btnB);
+      probeDiv.appendChild(pairDiv);
+    }
+    
+    function recordProbe(a,b,choice, probeStart) {
+      let isReward = rewardSymbols.includes(choice) ? 1 : 0;
+      participantData.probe.push({
+        pair: [a,b],
+        choice: choice,
+        isReward: isReward,
+        reactionTime: Date.now() - probeStart
+      });
+      probeIndex++;
+      renderProbe();
+    }
+    
+    participantData.timestamps.probeStart = Date.now();
+    renderProbe();
+  }
 
-const pairs = [];
-
-winningCombos.forEach(win => {
-
-nogainCombos.forEach(nogain => {
-
-pairs.push([win[0], nogain[0]]);
-
-});
-
-});
-
-let probeIndex = 0;
-
-participantData.probe = [];
-
-const probeDiv = document.getElementById('probePairs');
-
-function renderProbe() {
-
-probeDiv.innerHTML = '';
-
-if (probeIndex >= pairs.length) {
-
-document.getElementById('finishBtn').disabled = false;
-
-probeDiv.innerHTML = "All pairs completed. Please click Finish.";
-
-return;
-
-}
-
-let [a, b] = pairs[probeIndex];
-
-if (Math.random() > 0.5) [a, b] = [b, a];
-
-const question = document.createElement('div');
-
-question.style.fontWeight = 'bold';
-
-question.style.marginBottom = '12px';
-
-question.innerText = "Based on the casino slot machine game ,Which is
-more pleasant out of these two?";
-
-probeDiv.appendChild(question);
-
-const pairDiv = document.createElement('div');
-
-pairDiv.className = 'probe-pair';
-
-const btnA = document.createElement('button');
-
-btnA.className = 'probe-btn';
-
-btnA.innerHTML = shapeSVGs[a];
-
-const btnB = document.createElement('button');
-
-btnB.className = 'probe-btn';
-
-btnB.innerHTML = shapeSVGs[b];
-
-let probeStart = Date.now();
-
-btnA.onclick = (e) => { e.preventDefault();
-recordProbe(a,b,a,probeStart); };
-
-btnB.onclick = (e) => { e.preventDefault();
-recordProbe(a,b,b,probeStart); };
-
-pairDiv.appendChild(btnA);
-
-pairDiv.appendChild(btnB);
-
-probeDiv.appendChild(pairDiv);
-
-}
-
-function recordProbe(a,b,choice, probeStart) {
-
-let isReward = rewardSymbols.includes(choice) ? 1 : 0;
-
-participantData.probe.push({
-
-pair: [a,b],
-
-choice: choice,
-
-isReward: isReward,
-
-reactionTime: Date.now() - probeStart
-
-});
-
-probeIndex++;
-
-renderProbe();
-
-}
-
-participantData.timestamps.probeStart = Date.now();
-
-renderProbe();
-
-}
-
-// --- Finish: Send Data and Signal Completion ---
-
-function finishExperiment() {
-
-document.getElementById('probeTask').classList.add('hidden');
-
-document.getElementById('thankYou').classList.remove('hidden');
-
-participantData.timestamps.probeEnd = Date.now();
-
-participantData.timestamps.taskEnd = Date.now();
-
-SyncMarkers.send("affective_slider_end");
+  // --- Finish: Send Data and Signal Completion ---
+  function finishExperiment() {
+    document.getElementById('probeTask').classList.add('hidden');
+    document.getElementById('thankYou').classList.remove('hidden');
+    
+    participantData.timestamps.probeEnd = Date.now();
+    participantData.timestamps.taskEnd = Date.now();
+    SyncMarkers.send("affective_slider_end");
     SyncMarkers.finish();
-    console.log("Questionnaire Task End UNIX Timestamp:",
-participantData.timestamps.taskEnd);
+    console.log("Questionnaire Task End UNIX Timestamp:", participantData.timestamps.taskEnd);
+    console.log('Final Questionnaire Data:', participantData);
 
-console.log('Final Questionnaire Data:', participantData);
+    try { parent.postMessage({type:'taskComplete', task:7, data: participantData}, '*'); } catch(e) {}
+  }
+  </script>
+  </body>
+  </html>
+  </template>
 
-try { parent.postMessage({type:'taskComplete', task:7, data:
-participantData}, '*'); } catch(e) {}
 
-}
+  <script>
+    // Runner orchestrator
+    const tasks = [
+      { id: 'task0-html', label: '0. BASELINE RECORDING' },
+      { id: 'task1-html', label: '1. TASK 1' },
+      { id: 'task2-html', label: '2. DIGIT CANCELLATION & WORD FRAGMENT' },
+      { id: 'task3-html', label: '3. PNS TASK (6 BPM Breathing)' },
+      { id: 'task4-html', label: '4. TRAIL MAKING TASK' },
+      { id: 'task5-html', label: '5. TASK 5' },
+      { id: 'task6-html', label: '6. SNS TASK (Cold Pressor Test)' },
+      { id: 'task7-html', label: '7. POST-GAME QUESTIONNAIRE' }
+    ];
 
-</script>
+    const frame = document.getElementById('stage');
+    const startBtn = document.getElementById('startBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const skipBtn = document.getElementById('skipBtn');
+    const status = document.getElementById('status');
+    const bar = document.getElementById('bar');
 
+    let idx = -1;
+    let experimentData = {};
+
+    function downloadFullData() {
+        console.log('Final Experiment Data:', experimentData);
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(experimentData, null, 2));
+        const dlAnchor = document.createElement('a');
+        const participantId = experimentData.task7?.participantId || 'UNKNOWN_ID';
+        dlAnchor.setAttribute("href", dataStr);
+        dlAnchor.setAttribute("download", `full_experiment_data_${participantId}.json`);
+        document.body.appendChild(dlAnchor);
+        dlAnchor.click();
+        dlAnchor.remove();
+    }
+
+    function skipTask() {
+        if (idx > -1 && idx < tasks.length) {
+            console.log(`Task ${idx} skipped by user.`);
+            experimentData['task' + idx] = {
+                status: 'skipped',
+                skippedAt: Date.now()
+            };
+            nextTask();
+        }
+    }
+
+    function loadTask(i) {
+      const t = tasks[i];
+      const tpl = document.getElementById(t.id);
+      const html = tpl.innerHTML; 
+      frame.srcdoc = html;
+      status.innerHTML = `Running <b>${t.label}</b> (${i+1} / ${tasks.length})`;
+      bar.style.width = `${(i) / tasks.length * 100}%`;
+      skipBtn.disabled = false;
+    }
+
+    function nextTask() {
+      idx++;
+      if (idx < tasks.length) {
+        loadTask(idx);
+      } else {
+        status.innerHTML = `<b>All tasks completed.</b> Downloading final data file.`;
+        bar.style.width = '100%';
+        frame.srcdoc = `<html><body style="display:grid;place-items:center;min-height:80vh;background:#0b1020;color:#e5e7eb;font-family:system-ui,Segoe UI,Arial">
+          <div style="text-align:center">
+            <h2>✅ Experiment Complete</h2>
+            <p>Thank you for your participation!</p>
+          </div>
+        </body></html>`;
+        startBtn.disabled = true;
+        downloadBtn.disabled = true;
+        skipBtn.disabled = true;
+        downloadFullData();
+      }
+    }
+
+    window.addEventListener('message', (ev) => {
+      if (ev && ev.data && ev.data.type === 'taskComplete') {
+        console.log(`Task ${ev.data.task} complete. Data received:`, ev.data.data);
+        experimentData['task' + ev.data.task] = ev.data.data; // Store data
+        setTimeout(() => nextTask(), 400); // small delay for visual continuity
+      }
+    });
+
+    startBtn.addEventListener('click', () => {
+      startBtn.disabled = true;
+      nextTask();
+    });
+
+    downloadBtn.addEventListener('click', downloadFullData);
+    skipBtn.addEventListener('click', skipTask);
+
+  </script>
 </body>
-
 </html>
-
-</template>
-
-<script>
-
-// Runner orchestrator
-
-const tasks = [
-
-{ id: 'task0-html', label: '0. BASELINE RECORDING' },
-
-{ id: 'task1-html', label: '1. TASK 1' },
-
-{ id: 'task2-html', label: '2. DIGIT CANCELLATION & WORD FRAGMENT'
-},
-
-{ id: 'task3-html', label: '3. PNS TASK (6 BPM Breathing)' },
-
-{ id: 'task4-html', label: '4. TRAIL MAKING TASK' },
-
-{ id: 'task5-html', label: '5. TASK 5' },
-
-{ id: 'task6-html', label: '6. SNS TASK (Cold Pressor Test)' },
-
-{ id: 'task7-html', label: '7. POST-GAME QUESTIONNAIRE' }
-
-];
-
-const frame = document.getElementById('stage');
-
-const startBtn = document.getElementById('startBtn');
-
-const downloadBtn = document.getElementById('downloadBtn');
-
-const skipBtn = document.getElementById('skipBtn');
-
-const status = document.getElementById('status');
-
-const bar = document.getElementById('bar');
-
-let idx = -1;
-
-let experimentData = {};
-
-function downloadFullData() {
-
-console.log('Final Experiment Data:', experimentData);
-
-const dataStr = "data:text/json;charset=utf-8," +
-encodeURIComponent(JSON.stringify(experimentData, null, 2));
-
-const dlAnchor = document.createElement('a');
-
-const participantId = experimentData.task7?.participantId ||
-'UNKNOWN_ID';
-
-dlAnchor.setAttribute("href", dataStr);
-
-dlAnchor.setAttribute("download",
-`full_experiment_data_${participantId}.json`);
-
-document.body.appendChild(dlAnchor);
-
-dlAnchor.click();
-
-dlAnchor.remove();
-
-}
-
-function skipTask() {
-
-if (idx > -1 && idx < tasks.length) {
-
-console.log(`Task ${idx} skipped by user.`);
-
-experimentData['task' + idx] = {
-
-status: 'skipped',
-
-skippedAt: Date.now()
-
-};
-
-nextTask();
-
-}
-
-}
-
-function loadTask(i) {
-
-const t = tasks[i];
-
-const tpl = document.getElementById(t.id);
-
-const html = tpl.innerHTML;
-
-frame.srcdoc = html;
-
-status.innerHTML = `Running <b>${t.label}</b> (${i+1} /
-${tasks.length})`;
-
-bar.style.width = `${(i) / tasks.length * 100}%`;
-
-skipBtn.disabled = false;
-
-}
-
-function nextTask() {
-
-idx++;
-
-if (idx < tasks.length) {
-
-loadTask(idx);
-
-} else {
-
-status.innerHTML = `<b>All tasks completed.</b> Downloading final
-data file.`;
-
-bar.style.width = '100%';
-
-frame.srcdoc = `<html><body
-style="display:grid;place-items:center;min-height:80vh;background:#0b1020;color:#e5e7eb;font-family:system-ui,Segoe
-UI,Arial">
-
-<div style="text-align:center">
-
-<h2>✅ Experiment Complete</h2>
-
-<p>Thank you for your participation!</p>
-
-</div>
-
-</body></html>`;
-
-startBtn.disabled = true;
-
-downloadBtn.disabled = true;
-
-skipBtn.disabled = true;
-
-downloadFullData();
-
-}
-
-}
-
-window.addEventListener('message', (ev) => {
-
-if (ev && ev.data && ev.data.type === 'taskComplete') {
-
-console.log(`Task ${ev.data.task} complete. Data received:`,
-ev.data.data);
-
-experimentData['task' + ev.data.task] = ev.data.data; // Store data
-
-setTimeout(() => nextTask(), 400); // small delay for visual continuity
-
-}
-
-});
-
-startBtn.addEventListener('click', () => {
-
-startBtn.disabled = true;
-
-nextTask();
-
-});
-
-downloadBtn.addEventListener('click', downloadFullData);
-
-skipBtn.addEventListener('click', skipTask);
-
-</script>
-
-</body>
-
-</html>
-
